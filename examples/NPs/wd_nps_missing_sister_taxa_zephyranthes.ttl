@@ -1,0 +1,59 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.24_wd_nps_missing_sister_taxa_zephyranthes> a sh:SPARQLExecutable;
+  rdfs:comment " Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?",
+    """title: Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?
+ Zephyranthes""";
+  rdfs:label " Natural products pseudoabsent natural of Zephyranthes spp.";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
+PREFIX target: http://www.wikidata.org/entity/Q191364
+PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX target: <http://www.wikidata.org/entity/Q191364>
+SELECT DISTINCT ?compound ?compoundLabel ?taxon_with_compound ?another_taxon_with_compound ?taxon_without_compound WITH {
+SELECT DISTINCT ?compound ?taxon_YES_1 ?taxon_YES_2
+WHERE {
+?compound wdt:P703 ?taxon_YES_1 .
+?compound wdt:P703 ?taxon_YES_2 .
+?taxon_YES_1 wdt:P171 target: .
+?taxon_YES_2 wdt:P171 target: .
+FILTER (?taxon_YES_2 != ?taxon_YES_1)
+}
+} AS %taxa_with_compound
+WITH
+{
+SELECT DISTINCT ?taxon_NO ?compound
+WHERE {
+INCLUDE %taxa_with_compound
+?taxon_NO wdt:P171 target: .
+FILTER (?taxon_YES_1 != ?taxon_NO)
+}
+} AS %taxon_without_compond
+WHERE {
+INCLUDE %taxa_with_compound
+INCLUDE %taxon_without_compond
+FILTER NOT EXISTS { ?compound wdt:P703 ?taxon_NO .}
+VALUES ?classes {
+wd:Q113145171
+wd:Q59199015
+}
+?taxon_YES_1 wdt:P225 ?taxon_with_compound .
+?taxon_YES_2 wdt:P225 ?another_taxon_with_compound .
+?taxon_NO wdt:P225 ?taxon_without_compound .
+?compound (wdt:P31*/wdt:P279*) ?classes .
+?compound rdfs:label ?compoundLabel.
+FILTER(LANG(?compoundLabel) = \"en\").
+}
+LIMIT 10000""";
+  schema:keywords "Natural products";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

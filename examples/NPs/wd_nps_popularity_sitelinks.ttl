@@ -1,0 +1,36 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.30_wd_nps_popularity_sitelinks> a sh:SPARQLExecutable;
+  rdfs:comment " Which are the most popular natural products based on the number of sitelinks on their corresponding QID?",
+    "title: Which are the most popular natural products based on the number of sitelinks on their corresponding QID?";
+  rdfs:label " Natural products popularity by sitelinks";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX hint: http://www.bigdata.com/queryHints#
+PREFIX p: http://www.wikidata.org/prop/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wikibase: http://wikiba.se/ontology#
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+SELECT DISTINCT ?np ?sitelinks WHERE {
+    hint:Query hint:optimizer \"None\".
+    { SELECT DISTINCT ?sitelinks WHERE { [] wikibase:sitelinks ?sitelinks. } }
+    hint:Prior hint:runFirst FALSE.
+    FILTER(?sitelinks > 90 )
+    ?np wikibase:sitelinks ?sitelinks;
+    p:P703 [];
+    wdt:P2067 ?mass;
+    wdt:P274 ?formula.
+    FILTER(?mass > 100 )
+    FILTER((STRLEN(?formula)) > 2 )
+}
+ORDER BY DESC (?sitelinks)""";
+  schema:keywords "Natural products";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

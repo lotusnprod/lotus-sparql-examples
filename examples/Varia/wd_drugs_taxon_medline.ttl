@@ -1,0 +1,34 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.5_wd_drugs_taxon_medline> a sh:SPARQLExecutable;
+  rdfs:comment " What are the drugs (identified in Medline) found in taxa?", "title: What are the drugs (identified in Medline) found in taxa?";
+  rdfs:label " Drugs found in taxa";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX p: http://www.wikidata.org/prop/
+PREFIX pr: http://www.wikidata.org/prop/reference/
+PREFIX prov: http://www.w3.org/ns/prov#
+PREFIX ps: http://www.wikidata.org/prop/statement/
+PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT DISTINCT ?drug ?inchikey ?medlineDrugId WHERE {
+    ?drug wdt:P235 ?inchikey;
+    wdt:P10245 ?medlineDrugId;
+    p:P703[
+    ps:P703 ?taxon;
+    (prov:wasDerivedFrom/pr:P248) ?reference ].
+    FILTER (?taxon != wd:Q15978631) # exclude drugs found in Homo sapiens
+}""";
+  schema:keywords "Drugs";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

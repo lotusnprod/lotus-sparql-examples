@@ -1,0 +1,47 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.2_wd_chemical_classes_nps_years_scholarly_subgraph> a sh:SPARQLExecutable;
+  rdfs:comment " Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?",
+    "title: Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?";
+  rdfs:label " Chemical classes found in taxa (Terpenoids in Aspergillus)";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX p: http://www.wikidata.org/prop/
+PREFIX pr: http://www.wikidata.org/prop/reference/
+PREFIX prov: http://www.w3.org/ns/prov#
+PREFIX ps: http://www.wikidata.org/prop/statement/
+PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT ?compound ?compound_inchi (GROUP_CONCAT(DISTINCT ?isolation_reference; SEPARATOR = \"|\") AS ?isolation_references) (GROUP_CONCAT(DISTINCT ?reference_title; SEPARATOR = \"|\") AS ?references_titles) WHERE {
+    VALUES ?taxon {
+        wd:Q335130
+    }
+    VALUES ?chemical_class {
+        wd:Q426694
+    }
+    ?compound wdt:P234 ?compound_inchi;
+    ((wdt:P31|wdt:P279)/(wdt:P279*)) ?compound_class;
+    p:P703 ?statement.
+    ?statement ps:P703/(wdt:P171*) ?taxon;
+    (prov:wasDerivedFrom/pr:P248) ?isolation_reference.
+    SERVICE wdsubgraph:scholarly_articles {
+      ?isolation_reference wdt:P1476 ?reference_title;
+      wdt:P577 ?reference_date.
+    }
+    FILTER(((YEAR(?reference_date)) >= 2010 ) && ((YEAR(?reference_date)) <= 2020 ))
+    FILTER(?compound_class = ?chemical_class)
+}
+GROUP BY ?compound ?compound_inchi""";
+  schema:keywords "Chemical classes";
+  schema:target " https://query-main.wikidata.org/bigdata/namespace/wdq/sparql" .

@@ -1,0 +1,25 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.7_wd_maintenance_nps_2> a sh:SPARQLExecutable;
+  rdfs:comment " Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)",
+    "title: Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)";
+  rdfs:label " Maintenance found in taxa 2";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX p: http://www.wikidata.org/prop/
+PREFIX prov: http://www.w3.org/ns/prov#
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT ?statement WHERE {
+    [ p:P235 [];
+    p:P703 ?statement; ]
+    MINUS { ?statement prov:wasDerivedFrom []. }
+}
+LIMIT 10""";
+  schema:keywords "Maintenance";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

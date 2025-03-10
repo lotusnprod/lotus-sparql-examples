@@ -1,0 +1,45 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.20_wd_nps_known_siderophores_scholarly_subgraph> a sh:SPARQLExecutable;
+  rdfs:comment " Which are the available siderophores found in organisms on Wikidata? (example limited to 1000 results)",
+    "title: Which are the available siderophores found in organisms on Wikidata? (example limited to 1000 results)";
+  rdfs:label " Natural products known as siderophores";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX p: http://www.wikidata.org/prop/
+PREFIX pr: http://www.wikidata.org/prop/reference/
+PREFIX prov: http://www.w3.org/ns/prov#
+PREFIX ps: http://www.wikidata.org/prop/statement/
+PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT DISTINCT ?structure ?structure_smiles ?structure_inchikey ?taxon ?taxon_name ?reference ?reference_doi WHERE {
+    VALUES ?siderophores {
+        wd:Q424747   # siderophores
+        wd:Q50349216 # iron chelating agent
+        wd:Q71429918 # iron ionophore
+    }
+    ?structure wdt:P235 ?structure_inchikey;    # get the inchikey
+    wdt:P233 ?structure_smiles;                 # get the smiles
+    wdt:P2868 ?siderophores;
+    p:P703[                                     # statement found in taxon
+    ps:P703 ?taxon;                             # get the taxon
+    (prov:wasDerivedFrom/pr:P248) ?reference ]. # get the reference
+    ?taxon wdt:P225 ?taxon_name.                # get the taxon scientific name
+    SERVICE wdsubgraph:scholarly_articles {
+      ?reference wdt:P356 ?reference_doi.       # get the reference DOI
+    } 
+}
+LIMIT 1000""";
+  schema:keywords "Natural products";
+  schema:target " https://query-main.wikidata.org/bigdata/namespace/wdq/sparql" .

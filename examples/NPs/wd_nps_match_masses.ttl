@@ -1,0 +1,34 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.22_wd_nps_match_masses> a sh:SPARQLExecutable;
+  rdfs:comment " Which compounds corresponding to a given mass ± 10ppm are found in which organisms?",
+    "title: Which compounds corresponding to a given mass ± 10ppm are found in which organism(s)?";
+  rdfs:label " Natural products corresponding to given masses";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX xsd: http://www.w3.org/2001/XMLSchema#
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?compound ?mf ?inchi (GROUP_CONCAT(?taxon_name; SEPARATOR = \", \") AS ?organism) WHERE {
+    VALUES ?query {
+        \"524.1765\"^^xsd:decimal
+    }
+    VALUES ?ppm {
+        \"10\"^^xsd:decimal
+    }
+    ?compound wdt:P2067 ?mass.
+    FILTER((?mass > (?query - ((?ppm * \"0.000001\"^^xsd:decimal) * ?query))) && (?mass < (?query + ((?ppm * \"0.000001\"^^xsd:decimal) * ?query))))
+    ?compound (wdt:P703/wdt:P225) ?taxon_name;
+    wdt:P234 ?inchi;
+    wdt:P274 ?mf.
+}
+GROUP BY ?compound ?mf ?inchi
+LIMIT 10000""";
+  schema:keywords "Natural products";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

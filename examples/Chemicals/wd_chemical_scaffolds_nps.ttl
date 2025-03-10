@@ -1,0 +1,46 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.3_wd_chemical_scaffolds_nps> a sh:SPARQLExecutable;
+  rdfs:comment " Which organisms contain indolic scaffolds? Count occurences, group and order the results by the parent taxon",
+    """title: Which organisms contain at least 100 indolic scaffolds? Results ordered by parent taxon.
+ prefixes needed for structural similarity search""";
+  rdfs:label " Chemical scaffolds found in taxa (indole)";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX hint: http://www.bigdata.com/queryHints#
+PREFIX idsm: https://idsm.elixir-czech.cz/sparql/endpoint/
+PREFIX p: http://www.wikidata.org/prop/
+PREFIX ps: http://www.wikidata.org/prop/statement/
+PREFIX sachem: http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX xsd: http://www.w3.org/2001/XMLSchema#
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
+PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
+SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
+    SERVICE idsm:wikidata {
+        VALUES ?SUBSTRUCTURE {
+            \"C12=C(C=CC=C2)C=CN1\" # indolic scaffold
+        }
+        ?compound sachem:substructureSearch [
+        sachem:query ?SUBSTRUCTURE
+        ].
+    } hint:Prior hint:runFirst TRUE.
+    ?compound p:P703 ?statement.
+    ?statement ps:P703/wdt:P171 ?parent_taxon.
+    ?parent_taxon wdt:P225 ?parent_taxon_name.
+}
+GROUP BY ?parent_taxon ?parent_taxon_name
+HAVING (?count > 100)
+ORDER BY DESC (?count)""";
+  schema:keywords "Chemical scaffolds";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

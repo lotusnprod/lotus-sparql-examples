@@ -1,0 +1,34 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.42_wd_taxa_from_stereoisomers_qid> a sh:SPARQLExecutable;
+  rdfs:comment " Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?",
+    "title: Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?";
+  rdfs:label " Taxa containing stereoisomers of NPs";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
+PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wikibase: http://wikiba.se/ontology#
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+SELECT ?taxon_name ?compound ?InChIKey WHERE {
+    VALUES ?target {
+        wd:Q121802
+    }
+    ?target wdt:P235 ?queryKey.
+    ?compound wdt:P235 ?InChIKey.
+    FILTER (REGEX(STR(?InChIKey), CONCAT(\"^\", SUBSTR($queryKey,1,14), \"-\")))
+    FILTER (?InChIKey != ?queryKey)
+    ?compound (wdt:P703/wdt:P225) ?taxon_name.
+}
+LIMIT 10000""";
+  schema:keywords "Taxa";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

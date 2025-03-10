@@ -15,7 +15,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_bioactivity_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which natural products with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references?"@en ;
+rdfs:comment "Which natural products with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>

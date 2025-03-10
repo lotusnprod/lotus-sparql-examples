@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_chemical_classes_nps_years a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?"@en ;
+rdfs:comment "Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>

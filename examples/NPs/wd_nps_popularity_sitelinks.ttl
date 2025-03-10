@@ -11,7 +11,7 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_popularity_sitelinks a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which are the most popular natural products based on the number of sitelinks on their corresponding QID?"@en ;
+rdfs:comment "Which are the most popular natural products based on the number of sitelinks on their corresponding QID?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>

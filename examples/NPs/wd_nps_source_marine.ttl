@@ -14,7 +14,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_source_marine a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " What are the chemical compounds found in marine organisms and the articles reporting them?"@en ;
+rdfs:comment "What are the chemical compounds found in marine organisms and the articles reporting them?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>

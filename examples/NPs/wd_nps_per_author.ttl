@@ -15,12 +15,10 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_per_author a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)",
-"""title: How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)
-defaultView:BarChart""";
-rdfs:label " Natural products per author";
+rdfs:comment "How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
+#defaultView:BubbleChart
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>

@@ -9,7 +9,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_missing_sister_taxa a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " What are examples of organisms where compounds were found in an organism sharing the same parent taxon, but not the organism itself?"@en ;
+rdfs:comment "What are examples of organisms where compounds were found in an organism sharing the same parent taxon, but not the organism itself?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>

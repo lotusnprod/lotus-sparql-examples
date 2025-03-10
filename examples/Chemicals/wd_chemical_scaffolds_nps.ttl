@@ -15,7 +15,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_chemical_scaffolds_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which organisms contain indolic scaffolds? Count occurences, group and order the results by the parent taxon"@en ;
+rdfs:comment "Which organisms contain indolic scaffolds? Count occurences, group and order the results by the parent taxon"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>

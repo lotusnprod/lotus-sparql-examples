@@ -1,3 +1,4 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://purl.example.> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,14 +6,13 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://purl.example.7_wd_maintenance_nps_2> a sh:SPARQLExecutable;
-  rdfs:comment " Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)",
-    "title: Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)";
-  rdfs:label " Maintenance found in taxa 2";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX p: http://www.wikidata.org/prop/
-PREFIX prov: http://www.w3.org/ns/prov#
+ex:wd_maintenance_nps_2 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 SELECT ?statement WHERE {
@@ -20,6 +20,9 @@ SELECT ?statement WHERE {
     p:P703 ?statement; ]
     MINUS { ?statement prov:wasDerivedFrom []. }
 }
-LIMIT 10""";
-  schema:keywords "Maintenance";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+LIMIT 10
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "Maintenance";
+dc:creator "Adriano Rutz" .

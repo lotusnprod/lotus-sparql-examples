@@ -5,14 +5,13 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-<https://purl.example.41_wd_taxa_from_compound_qid> a sh:SPARQLExecutable;
-  rdfs:comment " Which organisms are known to contain Beta-Sitosterol (Q121802)?", "title: Which organisms are known to contain Beta-Sitosterol (Q121802)?";
-  rdfs:label " Taxa containing NPs";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
+ex:wd_taxa_from_compound_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Which organisms are known to contain Beta-Sitosterol (Q121802)?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 SELECT DISTINCT ?taxon ?taxon_name WHERE {
@@ -22,9 +21,9 @@ SELECT DISTINCT ?taxon ?taxon_name WHERE {
     ?compound wdt:P703 ?taxon.         # Found in taxon
     ?taxon wdt:P225 ?taxon_name.       # Get scientific name of the taxon
 }
-LIMIT 10000""";
+LIMIT 10000
+""";
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "taxa" ;
 dc:creator "Lotus Contributors" .

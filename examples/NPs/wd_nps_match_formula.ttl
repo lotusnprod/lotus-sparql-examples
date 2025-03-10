@@ -5,6 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_match_formula a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " Which taxa contain structures corresponding to the following chemical formula?"@en ;

@@ -5,6 +5,15 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix bd: <http://www.bigdata.com/rdf#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pr: <http://www.wikidata.org/prop/reference/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdsubgraph: <https://query.wikidata.org/subgraph/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_per_author_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)",
@@ -13,13 +22,14 @@ defaultView:BarChart""";
 rdfs:label " Natural products per author";
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-PREFIX wikibase: <http://wikiba.se/ontology#>
-PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
 SELECT ?authors_namesLabel (COUNT(DISTINCT(?compound)) AS ?count) WHERE {
     ?compound p:P703 ?stmt.         # statement found in taxon
     ?stmt prov:wasDerivedFrom ?ref. # get the reference
@@ -38,6 +48,7 @@ GROUP BY ?authors_namesLabel
 ORDER BY DESC (?count)
 """;
 schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <https://query.wikidata.org/subgraph/scholarly_articles>, <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

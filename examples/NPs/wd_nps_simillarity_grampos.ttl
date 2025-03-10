@@ -5,17 +5,24 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix hint: <http://www.bigdata.com/queryHints#> .
+@prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
+@prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_nps_simillarity_grampos a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " What are the parent taxa containing the most compounds similar to compounds known to treat gram-positive infections (Q55789782)?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
+PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hint: <http://www.bigdata.com/queryHints#>
-PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
-PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 SELECT DISTINCT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?CUTOFF {
@@ -44,6 +51,7 @@ GROUP BY ?parent_taxon ?parent_taxon_name
 ORDER BY DESC (?count)
 """;
 schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata>, <https://query.wikidata.org/bigdata/namespace/wdq/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

@@ -5,15 +5,19 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix hint: <http://www.bigdata.com/queryHints#> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_popularity_sitelinks a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " Which are the most popular natural products based on the number of sitelinks on their corresponding QID?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
 SELECT DISTINCT ?np ?sitelinks WHERE {
     hint:Query hint:optimizer \"None\".
     { SELECT DISTINCT ?sitelinks WHERE { [] wikibase:sitelinks ?sitelinks. } }

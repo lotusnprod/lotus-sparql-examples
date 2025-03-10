@@ -5,18 +5,25 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix hint: <http://www.bigdata.com/queryHints#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pr: <http://www.wikidata.org/prop/reference/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_source_marine a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " What are the chemical compounds found in marine organisms and the articles reporting them?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX p: <http://www.wikidata.org/prop/>
-PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
-PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 SELECT DISTINCT ?structure ?structure_smiles ?reference ?reference_title ?reference_doi WHERE {
     {
         SELECT ?child WHERE {

@@ -5,22 +5,14 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.27_wd_nps_per_author_2_scholarly_subgraph> a sh:SPARQLExecutable;
-  rdfs:comment " Which authors isolated the most natural products (based on a sample of 10,000 compounds)? Return the top 30 authors by count.",
-    """title: Which authors isolated the most natural products (based on a sample of 10,000 compounds)? Return the top 30 authors by count.
+ex:wd_nps_known_pigments a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which authors isolated the most natural products (based on a sample of 10,000 compounds)? Return the top 30 authors by count.",
+"""title: Which authors isolated the most natural products (based on a sample of 10,000 compounds)? Return the top 30 authors by count.
 defaultView:BubbleChart""";
-  rdfs:label " Natural products per author 2";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
-PREFIX hint: http://www.bigdata.com/queryHints#
-PREFIX p: http://www.wikidata.org/prop/
-PREFIX pr: http://www.wikidata.org/prop/reference/
-PREFIX prov: http://www.w3.org/ns/prov#
-PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX wikibase: http://wikiba.se/ontology#
+rdfs:label " Natural products per author 2";
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -57,6 +49,9 @@ SELECT ?authorLabel ?nationalityLabel ?rgb (COUNT(DISTINCT ?compound) AS ?count)
 }
 GROUP BY ?authorLabel ?nationalityLabel ?rgb
 ORDER BY DESC (?count)
-LIMIT 30""";
-  schema:keywords "Authors", "Natural products";
-  schema:target " https://query-main.wikidata.org/bigdata/namespace/wdq/sparql" .
+LIMIT 30
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

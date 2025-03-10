@@ -5,17 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.29_wd_nps_popularity_names> a sh:SPARQLExecutable;
-  rdfs:comment " Which are the most popular natural products based on the number of items named after them?",
-    "title: Which are the most popular natural products based on the number of items named after them?";
-  rdfs:label " Natural products popularity by names";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
-PREFIX p: http://www.wikidata.org/prop/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX wikibase: http://wikiba.se/ontology#
+ex:wd_nps_popularity_names a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which are the most popular natural products based on the number of items named after them?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -30,6 +24,9 @@ SELECT DISTINCT ?np ?npLabel (COUNT(DISTINCT ?item) AS ?count) WHERE {
     SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\". }
 }
 GROUP BY ?np ?npLabel
-ORDER BY DESC (?count)""";
-  schema:keywords "Natural products";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+ORDER BY DESC (?count)
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

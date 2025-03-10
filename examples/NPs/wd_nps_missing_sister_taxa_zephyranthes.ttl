@@ -5,18 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.24_wd_nps_missing_sister_taxa_zephyranthes> a sh:SPARQLExecutable;
-  rdfs:comment " Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?",
-    """title: Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?
- Zephyranthes""";
-  rdfs:label " Natural products pseudoabsent natural of Zephyranthes spp.";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
-PREFIX target: http://www.wikidata.org/entity/Q191364
-PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
+ex:wd_nps_missing_sister_taxa_zephyranthes a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -55,6 +48,9 @@ wd:Q59199015
 ?compound rdfs:label ?compoundLabel.
 FILTER(LANG(?compoundLabel) = \"en\").
 }
-LIMIT 10000""";
-  schema:keywords "Natural products";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+LIMIT 10000
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

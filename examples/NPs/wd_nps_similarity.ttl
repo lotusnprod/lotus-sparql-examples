@@ -5,20 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.31_wd_nps_similarity> a sh:SPARQLExecutable;
-  rdfs:comment " How many compounds are structurally similar to eugenol and eugenyl acetate? Results are grouped by the parent taxon of the organism they were found in.",
-    """title:How many compounds are structurally similar to eugenol and eugenyl acetate? Results are grouped by the parent taxon of the organism they were found in.
- prefixes needed for structural similarity search""";
-  rdfs:label " Natural products structurally similar to chemicals";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX hint: http://www.bigdata.com/queryHints#
-PREFIX idsm: https://idsm.elixir-czech.cz/sparql/endpoint/
-PREFIX sachem: http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#
-PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX xsd: http://www.w3.org/2001/XMLSchema#
+ex:wd_nps_similarity a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " How many compounds are structurally similar to eugenol and eugenyl acetate? Results are grouped by the parent taxon of the organism they were found in."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -46,6 +37,9 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
     ?parent_taxon wdt:P225 ?parent_taxon_name.
 }
 GROUP BY ?parent_taxon ?parent_taxon_name
-ORDER BY DESC (?count)""";
-  schema:keywords "Natural products", "Structural similarity";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+ORDER BY DESC (?count)
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

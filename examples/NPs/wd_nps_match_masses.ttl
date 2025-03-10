@@ -5,15 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.22_wd_nps_match_masses> a sh:SPARQLExecutable;
-  rdfs:comment " Which compounds corresponding to a given mass ± 10ppm are found in which organisms?",
-    "title: Which compounds corresponding to a given mass ± 10ppm are found in which organism(s)?";
-  rdfs:label " Natural products corresponding to given masses";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX xsd: http://www.w3.org/2001/XMLSchema#
+ex:wd_nps_match_masses a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which compounds corresponding to a given mass ± 10ppm are found in which organisms?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT DISTINCT ?compound ?mf ?inchi (GROUP_CONCAT(?taxon_name; SEPARATOR = \", \") AS ?organism) WHERE {
@@ -30,6 +26,9 @@ SELECT DISTINCT ?compound ?mf ?inchi (GROUP_CONCAT(?taxon_name; SEPARATOR = \", 
     wdt:P274 ?mf.
 }
 GROUP BY ?compound ?mf ?inchi
-LIMIT 10000""";
-  schema:keywords "Natural products";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+LIMIT 10000
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

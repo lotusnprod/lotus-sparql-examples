@@ -1,6 +1,6 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix ex: <https://purl.example.> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Maintenance/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
@@ -40,4 +40,4 @@ LIMIT 1000
 schema:target <https://query.wikidata.org/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "Maintenance";
-dc:creator "Adriano Rutz" .
+dc:creator "Lotus Contributors" .

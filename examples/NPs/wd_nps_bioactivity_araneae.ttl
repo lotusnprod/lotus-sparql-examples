@@ -5,16 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.9_wd_nps_bioactivity_araneae> a sh:SPARQLExecutable;
-  rdfs:comment " What are the biological activities of compounds found in Araneae (Q1357) or children taxa?",
-    "title: What are the biological activities of compounds found in Araneae (Q1357) or children taxa?";
-  rdfs:label " Natural products with bioactivity in spiders (Araneae)";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
-PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
+ex:wd_nps_bioactivity_araneae a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " What are the biological activities of compounds found in Araneae (Q1357) or children taxa?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -30,6 +25,9 @@ SELECT DISTINCT ?structure ?structure_inchikey (GROUP_CONCAT(DISTINCT ?meshLabel
     FILTER(LANG(?meshLabel) = \"en\")
 }
 GROUP BY ?structure ?structure_inchikey
-LIMIT 100""";
-  schema:keywords "Natural products";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+LIMIT 100
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

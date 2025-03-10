@@ -5,14 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.21_wd_nps_match_formula> a sh:SPARQLExecutable;
-  rdfs:comment " Which taxa contain structures corresponding to the following chemical formula?",
-    "title: Which taxa contain structures corresponding to the following chemical formula?";
-  rdfs:label " Natural products corresponding to given molecular formulas";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX wdt: http://www.wikidata.org/prop/direct/
+ex:wd_nps_match_formula a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which taxa contain structures corresponding to the following chemical formula?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 SELECT DISTINCT ?structure ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {{
     VALUES ?formula {
@@ -23,6 +20,9 @@ SELECT DISTINCT ?structure ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {
     wdt:P233 ?smiles_canonical;
     wdt:P703 ?taxon.
     ?taxon wdt:P225 ?taxon_name.}
-}""";
-  schema:keywords "Natural products";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+}
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

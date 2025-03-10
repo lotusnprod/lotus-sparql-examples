@@ -70,5 +70,8 @@ WHERE {
   FILTER(xsd:integer(?structureCount) >= xsd:integer(?targetCount))
 }
 LIMIT 10000""";
-  schema:keywords "Natural products", "Structural similarity", "Taxa";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <http://wikiba.se/ontology#label> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products", "structural similarity", "taxa" ;
+dc:creator "Lotus Contributors" .

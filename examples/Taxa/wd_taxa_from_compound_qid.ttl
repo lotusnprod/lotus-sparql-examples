@@ -23,5 +23,8 @@ SELECT DISTINCT ?taxon ?taxon_name WHERE {
     ?taxon wdt:P225 ?taxon_name.       # Get scientific name of the taxon
 }
 LIMIT 10000""";
-  schema:keywords "Taxa";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <http://wikiba.se/ontology#label> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "taxa" ;
+dc:creator "Lotus Contributors" .

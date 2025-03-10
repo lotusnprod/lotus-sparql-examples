@@ -6,24 +6,23 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix bd: <http://www.bigdata.com/rdf#> .
+@prefix hint: <http://www.bigdata.com/queryHints#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
 
-<https://purl.example.4_wd_dishes_ingredients_diversity> a sh:SPARQLExecutable;
-  rdfs:comment " Which are the ingredients of dishes and the diversity of the taxa they originate from?",
-    "title: Which are the ingredients of dishes and the diversity of the taxa they originate from?";
-  rdfs:label " Dishes ingredients diversity";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
-PREFIX hint: http://www.bigdata.com/queryHints#
-PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
-PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX wikibase: http://wikiba.se/ontology#
+ex:wd_dishes_ingredients_diversity a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which are the ingredients of dishes and the diversity of the taxa they originate from?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX bd: <http://www.bigdata.com/rdf#>
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (COUNT(DISTINCT ?parent) AS ?parents) WHERE {
     {
         SELECT DISTINCT ?dish ?dishLabel ?ingredient ?taxon WHERE {
@@ -53,6 +52,10 @@ SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (
     ?taxon (wdt:P171*) ?parent.
 }
 GROUP BY ?dish ?dishLabel
-ORDER BY DESC (?parents)""";
-  schema:keywords "Dishes";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+ORDER BY DESC (?parents)
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <http://wikiba.se/ontology#label> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "Food";
+dc:creator "Lotus Contributors" .

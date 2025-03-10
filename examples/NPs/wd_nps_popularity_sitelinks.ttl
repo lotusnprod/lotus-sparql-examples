@@ -5,17 +5,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 
-<https://purl.example.30_wd_nps_popularity_sitelinks> a sh:SPARQLExecutable;
-  rdfs:comment " Which are the most popular natural products based on the number of sitelinks on their corresponding QID?",
-    "title: Which are the most popular natural products based on the number of sitelinks on their corresponding QID?";
-  rdfs:label " Natural products popularity by sitelinks";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX hint: http://www.bigdata.com/queryHints#
-PREFIX p: http://www.wikidata.org/prop/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX wikibase: http://wikiba.se/ontology#
+ex:wd_nps_popularity_sitelinks a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment " Which are the most popular natural products based on the number of sitelinks on their corresponding QID?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -32,6 +26,9 @@ SELECT DISTINCT ?np ?sitelinks WHERE {
     FILTER(?mass > 100 )
     FILTER((STRLEN(?formula)) > 2 )
 }
-ORDER BY DESC (?sitelinks)""";
-  schema:keywords "Natural products";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+ORDER BY DESC (?sitelinks)
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

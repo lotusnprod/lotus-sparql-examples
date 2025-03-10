@@ -57,5 +57,5 @@ ORDER BY DESC (?parents)
 schema:target <https://query.wikidata.org/sparql> ;
 spex:federatesWith <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "Food";
+schema:keywords "food";
 dc:creator "Lotus Contributors" .

@@ -5,15 +5,20 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix bd: <http://www.bigdata.com/rdf#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_from_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " What are the compounds found in Mouse-ear cress Arabidopsis thaliana (Q158695) or children taxa?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
+PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-PREFIX bd: <http://www.bigdata.com/rdf#>
 SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey WHERE {
     VALUES ?taxon {
         wd:Q158695                             # You can remove the Qxxxxxx and hit Ctrl+space, type the first letters and it should autocomplete
@@ -26,6 +31,7 @@ SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey WHERE {
 LIMIT 10000
 """;
 schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

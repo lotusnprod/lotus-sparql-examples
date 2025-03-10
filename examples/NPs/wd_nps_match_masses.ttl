@@ -5,6 +5,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_nps_match_masses a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " Which compounds corresponding to a given mass ± 10ppm are found in which organisms?"@en ;

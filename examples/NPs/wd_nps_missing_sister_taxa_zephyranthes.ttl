@@ -5,15 +5,18 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix target: <http://www.wikidata.org/entity/Q191364> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_missing_sister_taxa_zephyranthes a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX target: <http://www.wikidata.org/entity/Q191364>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 SELECT DISTINCT ?compound ?compoundLabel ?taxon_with_compound ?another_taxon_with_compound ?taxon_without_compound WITH {
 SELECT DISTINCT ?compound ?taxon_YES_1 ?taxon_YES_2
 WHERE {

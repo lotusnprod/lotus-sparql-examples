@@ -5,6 +5,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_bioactivity_araneae a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment " What are the biological activities of compounds found in Araneae (Q1357) or children taxa?"@en ;

@@ -14,7 +14,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_nps_simillarity_to_classes a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " What are the parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those reported in Quillaja saponaria (Q2382775)?"@en ;
+rdfs:comment "What are the parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those reported in Quillaja saponaria (Q2382775)?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>

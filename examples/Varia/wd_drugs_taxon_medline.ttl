@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_drugs_taxon_medline a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " What are the drugs (identified in Medline) found in taxa?"@en ;
+rdfs:comment "What are the drugs (identified in Medline) found in taxa?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>

@@ -9,7 +9,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_bioactivity_araneae a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " What are the biological activities of compounds found in Araneae (Q1357) or children taxa?"@en ;
+rdfs:comment "What are the biological activities of compounds found in Araneae (Q1357) or children taxa?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>

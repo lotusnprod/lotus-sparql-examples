@@ -9,7 +9,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 ex:wd_maintenance_nps_2 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)"@en ;
+rdfs:comment "Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>

@@ -15,7 +15,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_known_siderophores_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which are the available siderophores found in organisms on Wikidata? (example limited to 1000 results)"@en ;
+rdfs:comment "Which are the available siderophores found in organisms on Wikidata? (example limited to 1000 results)"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>

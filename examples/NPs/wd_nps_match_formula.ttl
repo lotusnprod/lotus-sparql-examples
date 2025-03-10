@@ -8,7 +8,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_match_formula a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment " Which taxa contain structures corresponding to the following chemical formula?"@en ;
+rdfs:comment "Which taxa contain structures corresponding to the following chemical formula?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>

@@ -5,19 +5,20 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
+@prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://purl.example.40_wd_taxa_containing_all_compounds> a sh:SPARQLExecutable;
-  rdfs:comment " Which taxa contain all of the following structures?", "title: Which taxa contain all of the following structures?";
-  rdfs:label " Taxa containing all compounds";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX idsm: https://idsm.elixir-czech.cz/sparql/endpoint/
-PREFIX sachem: http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX xsd: http://www.w3.org/2001/XMLSchema#
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
+ex:wd_taxa_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Which taxa contain all of the following structures?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
 PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
+PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT DISTINCT ?taxon ?taxon_name
 WITH {
@@ -65,9 +66,9 @@ WHERE {
   INCLUDE %target_count
   FILTER(xsd:integer(?structureCount) >= xsd:integer(?targetCount))
 }
-LIMIT 10000""";
+LIMIT 10000
+""";
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products", "structural similarity", "taxa" ;
 dc:creator "Lotus Contributors" .

@@ -5,21 +5,19 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix bd: <http://www.bigdata.com/rdf#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
 
-<https://purl.example.42_wd_taxa_from_stereoisomers_qid> a sh:SPARQLExecutable;
-  rdfs:comment " Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?",
-    "title: Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?";
-  rdfs:label " Taxa containing stereoisomers of NPs";
-  sh:prefixes _:sparql_examples_prefixes;
-  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
-PREFIX wd: http://www.wikidata.org/entity/
-PREFIX wdt: http://www.wikidata.org/prop/direct/
-PREFIX wikibase: http://wikiba.se/ontology#
+ex:wd_taxa_from_stereoisomers_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-PREFIX bd: <http://www.bigdata.com/rdf#>
 SELECT ?taxon_name ?compound ?InChIKey WHERE {
     VALUES ?target {
         wd:Q121802
@@ -32,7 +30,6 @@ SELECT ?taxon_name ?compound ?InChIKey WHERE {
 }
 LIMIT 10000""";
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "taxa" ;
 dc:creator "Lotus Contributors" .

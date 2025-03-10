@@ -1,0 +1,26 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.41_wd_taxa_from_compound_qid> a sh:SPARQLExecutable;
+  rdfs:comment " Which organisms are known to contain Beta-Sitosterol (Q121802)?", "title: Which organisms are known to contain Beta-Sitosterol (Q121802)?";
+  rdfs:label " Taxa containing NPs";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+SELECT DISTINCT ?taxon ?taxon_name WHERE {
+    VALUES ?compound {
+        wd:Q121802                     # You can remove the Qxxxxxx and hit Ctrl+space, type the first letters and it should autocomplete
+    }
+    ?compound wdt:P703 ?taxon.         # Found in taxon
+    ?taxon wdt:P225 ?taxon_name.       # Get scientific name of the taxon
+}
+LIMIT 10000""";
+  schema:keywords "Taxa";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

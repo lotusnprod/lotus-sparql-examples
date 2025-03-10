@@ -1,0 +1,57 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.4_wd_dishes_ingredients_diversity> a sh:SPARQLExecutable;
+  rdfs:comment " Which are the ingredients of dishes and the diversity of the taxa they originate from?",
+    "title: Which are the ingredients of dishes and the diversity of the taxa they originate from?";
+  rdfs:label " Dishes ingredients diversity";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
+PREFIX hint: http://www.bigdata.com/queryHints#
+PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
+PREFIX wd: http://www.wikidata.org/entity/
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wikibase: http://wikiba.se/ontology#
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (COUNT(DISTINCT ?parent) AS ?parents) WHERE {
+    {
+        SELECT DISTINCT ?dish ?dishLabel ?ingredient ?taxon WHERE {
+            {
+                SELECT DISTINCT ?dish ?dishLabel ?ingredient WHERE {
+                    hint:Query hint:optimizer \"None\".
+                    ?dish wdt:P31 wd:Q746549;
+                    (wdt:P527+) ?ingredient.
+                    hint:Prior hint:gearing \"forward\".
+                    SERVICE wikibase:label {
+                        bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\".
+                        ?dish rdfs:label ?dishLabel.
+                    }
+                }
+            }
+            hint:Prior hint:runFirst \"true\".
+            ?ingredient (wdt:P186*) ?subingredient.
+            {
+                ?subingredient wdt:P31 wd:Q16521.
+                BIND(?subingredient AS ?taxon)
+            }
+            UNION
+            { ?subingredient wdt:P1582 ?taxon. }
+        }
+    }
+    hint:Prior hint:runFirst TRUE.
+    ?taxon (wdt:P171*) ?parent.
+}
+GROUP BY ?dish ?dishLabel
+ORDER BY DESC (?parents)""";
+  schema:keywords "Dishes";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

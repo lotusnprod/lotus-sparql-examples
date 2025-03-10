@@ -1,0 +1,33 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://purl.example.> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+
+<https://purl.example.14_wd_nps_from_ottid> a sh:SPARQLExecutable;
+  rdfs:comment " What are the compounds found in (children) organisms corresponding to a given ott_id?",
+    "title: What are the compounds found in (children) organisms corresponding to a given ott_id?";
+  rdfs:label " Natural products from ott_id";
+  sh:prefixes _:sparql_examples_prefixes;
+  sh:select """PREFIX bd: http://www.bigdata.com/rdf#
+PREFIX wdt: http://www.wikidata.org/prop/direct/
+PREFIX wikibase: http://wikiba.se/ontology#
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey ?childrenLabel WHERE {
+    VALUES ?ott_id {
+        \"332362\"
+        \"1000758\"
+    }
+    ?taxon wdt:P9157 ?ott_id.
+    ?children (wdt:P171*) ?taxon.
+    ?structure wdt:P235 ?structure_inchikey;
+    wdt:P703 ?children.
+    SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\". }
+}
+LIMIT 10000""";
+  schema:keywords "Natural products";
+  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .

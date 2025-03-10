@@ -31,5 +31,8 @@ SELECT ?taxon_name ?compound ?InChIKey WHERE {
     ?compound (wdt:P703/wdt:P225) ?taxon_name.
 }
 LIMIT 10000""";
-  schema:keywords "Taxa";
-  schema:target " https://query.wikidata.org/bigdata/namespace/wdq/sparql" .
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <http://wikiba.se/ontology#label> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "taxa" ;
+dc:creator "Lotus Contributors" .

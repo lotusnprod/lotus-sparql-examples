@@ -38,5 +38,5 @@ LIMIT 1000
 """;
 schema:target <https://query.wikidata.org/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "Maintenance";
+schema:keywords "maintenance";
 dc:creator "Lotus Contributors" .

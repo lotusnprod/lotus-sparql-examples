@@ -12,14 +12,14 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_popularity_names a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which are the most popular natural products based on the number of items named after them?"@en ;
+rdfs:comment "Most popular natural products by count of items named after them."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: Which are the most popular natural products based on the number of items named after them?
+#title: Most popular natural products by count of items named after them.
 SELECT DISTINCT ?np ?npLabel (COUNT(DISTINCT ?item) AS ?count) WHERE {
     ?item wdt:P138 ?np.
     ?np p:P703 [];

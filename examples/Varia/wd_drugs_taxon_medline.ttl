@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_drugs_taxon_medline a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "What are the drugs (identified in Medline) found in taxa?"@en ;
+rdfs:comment "Drugs (in Medline) found in taxa."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -22,7 +22,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: What are the drugs (identified in Medline) found in taxa?
+#title: Drugs (in Medline) found in taxa.
 SELECT DISTINCT ?drug ?inchikey ?medlineDrugId WHERE {
     ?drug wdt:P235 ?inchikey;
     wdt:P10245 ?medlineDrugId;

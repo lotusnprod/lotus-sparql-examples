@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_source a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which are the available referenced structure-organism pairs on Wikidata? (example limited to 1000 results)"@en ;
+rdfs:comment "Referenced compound-taxon pairs (limited to 1000 results)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -21,9 +21,9 @@ PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which are the available referenced structure-organism pairs on Wikidata? (example limited to 1000 results)
-SELECT DISTINCT ?structure ?structure_inchikey ?taxon ?taxon_name ?reference ?reference_doi WHERE {
-    ?structure wdt:P235 ?structure_inchikey;       # get the inchikey
+#title: Referenced compound-taxon pairs (limited to 1000 results).
+SELECT DISTINCT ?compound ?compound_inchikey ?taxon ?taxon_name ?reference ?reference_doi WHERE {
+    ?compound wdt:P235 ?compound_inchikey;       # get the inchikey
     p:P703[                                        # statement found in taxon
     ps:P703 ?taxon;                                # get the taxon
     (prov:wasDerivedFrom/pr:P248) ?reference ].    # get the reference

@@ -9,12 +9,12 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_taxa_from_compound_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which organisms are known to contain Beta-Sitosterol (Q121802)?"@en ;
+rdfs:comment "Taxa containing Beta-Sitosterol (Q121802)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which organisms are known to contain Beta-Sitosterol (Q121802)?
+#title: Taxa containing Beta-Sitosterol (Q121802).
 SELECT DISTINCT ?taxon ?taxon_name WHERE {
     VALUES ?compound {
         wd:Q121802                     # You can remove the Qxxxxxx and hit Ctrl+space, type the first letters and it should autocomplete

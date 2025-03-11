@@ -15,7 +15,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_bioactivity_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which natural products with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references?"@en ;
+rdfs:comment "Bioactive compounds isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related taxa and references."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -26,10 +26,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which natural products with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references?
-SELECT ?organism ?organism_name ?compound ?compound_smiles ?bioactivity ?isolation_reference ?reference_title WHERE {
-    ?organism (wdt:P171*) wd:Q62606918;
-    wdt:P225 ?organism_name.
+#title: Bioactive compounds isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related taxa and references.
+SELECT ?taxon ?taxon_name ?compound ?compound_smiles ?bioactivity ?isolation_reference ?reference_title WHERE {
+    ?taxon (wdt:P171*) wd:Q62606918;
+    wdt:P225 ?taxon_name.
     ?compound wdt:P235 ?compound_id;
     wdt:P233 ?compound_smiles;
     p:P703 ?statement;
@@ -37,7 +37,7 @@ SELECT ?organism ?organism_name ?compound ?compound_smiles ?bioactivity ?isolati
     ?mesh wdt:P486 ?meshId;
     rdfs:label ?bioactivity.
     FILTER(LANGMATCHES(LANG(?bioactivity), "EN"))
-    ?statement ps:P703 ?organism;
+    ?statement ps:P703 ?taxon;
     prov:wasDerivedFrom ?ref.
     ?ref pr:P248 ?isolation_reference.
     SERVICE wdsubgraph:scholarly_articles {

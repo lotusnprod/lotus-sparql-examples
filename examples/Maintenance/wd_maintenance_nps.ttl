@@ -13,7 +13,7 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
 ex:wd_maintenance_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which are the available referenced structure-organism pairs on Wikidata? (with P1582 and not P703 we are using)"@en ;
+rdfs:comment "Referenced compound-taxon pairs on Wikidata (with P1582 and not P703)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -22,7 +22,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which are the available referenced structure-organism pairs on Wikidata? (with P1582 and not P703 we are using)
+#title: Referenced compound-taxon pairs on Wikidata (with P1582 and not P703).
 SELECT DISTINCT (REPLACE(STR(?item), ".*Q", "Q") AS ?qid) (REPLACE(STR(?taxon), ".*Q", "Q") AS ?P703) (REPLACE(STR(?art), ".*Q", "Q") AS ?S248) WHERE {
     VALUES ?classes {
         wd:Q113145171

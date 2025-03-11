@@ -11,14 +11,14 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_taxa_from_stereoisomers_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?"@en ;
+rdfs:comment "Taxa containing stereoisomers of Beta-Sitosterol (Q121802)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?
+#title: Taxa containing stereoisomers of Beta-Sitosterol (Q121802).
 SELECT ?taxon_name ?compound ?InChIKey WHERE {
     VALUES ?target {
         wd:Q121802

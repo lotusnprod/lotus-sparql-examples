@@ -16,7 +16,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_source_marine_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "What are the chemical compounds found in marine organisms and the articles reporting them?"@en ;
+rdfs:comment "Compounds found in marine taxa and their references."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>
@@ -27,8 +27,8 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: What are the chemical compounds found in marine organisms and the articles reporting them?
-SELECT DISTINCT ?structure ?structure_smiles ?reference ?reference_title ?reference_doi WHERE {
+#title: Compounds found in marine taxa and their references.
+SELECT DISTINCT ?compound ?compound_smiles ?reference ?reference_title ?reference_doi WHERE {
     {
         SELECT ?child WHERE {
             { ?child (wdt:P171*) wd:Q152. }    # fishes
@@ -45,7 +45,7 @@ SELECT DISTINCT ?structure ?structure_smiles ?reference ?reference_title ?refere
         }
     }
     hint:Prior hint:runFirst TRUE.
-    ?structure wdt:P233 ?structure_smiles;
+    ?compound wdt:P233 ?compound_smiles;
     p:P703[
     ps:P703 ?child;
     (prov:wasDerivedFrom/pr:P248) ?reference ].

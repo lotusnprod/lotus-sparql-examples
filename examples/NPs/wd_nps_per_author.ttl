@@ -15,7 +15,7 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_per_author a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)"@en ;
+rdfs:comment "Count compound-taxon pairs referenced by authors."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
@@ -25,7 +25,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)
+#title: Count compound-taxon pairs referenced by authors.
 #defaultView:BarChart
 SELECT ?authors_namesLabel (COUNT(DISTINCT(?compound)) AS ?count) WHERE {
     ?compound p:P703 ?stmt.         # statement found in taxon

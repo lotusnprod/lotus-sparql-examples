@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_known_pigments a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which pigments are found in which taxa, according to which reference?"@en ;
+rdfs:comment "Pigments found in taxa, with reference."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -24,7 +24,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which pigments are found in which taxa, according to which reference?
+#title: Pigments found in taxa, with reference.
 # special thanks goes to User:Lmichan for updating this information!
 SELECT DISTINCT ?compound ?compoundLabel ?taxon ?taxonname ?DOI WHERE {
     ?compound p:P703 ?P703statement;

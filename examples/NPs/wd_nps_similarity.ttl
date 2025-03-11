@@ -40,7 +40,7 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
         sachem:query ?smiles;
         sachem:cutoff ?CUTOFF
         ].
-    } hint:Prior hint:runFirst TRUE.
+    } hint:Prior hint:runFirst true.
     ?compound wdt:P703/wdt:P171 ?parent_taxon.
     ?parent_taxon wdt:P225 ?parent_taxon_name.
 }

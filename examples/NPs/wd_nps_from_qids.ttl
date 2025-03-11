@@ -30,7 +30,7 @@ SELECT DISTINCT ?compound ?compoundLabel ?compound_inchikey ?childLabel WHERE {
             { ?child (wdt:P171*) wd:Q811662. }
         }
     }
-    hint:Prior hint:runFirst TRUE.
+    hint:Prior hint:runFirst true.
     ?compound wdt:P235 ?compound_inchikey;
     wdt:P703 ?child.
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }

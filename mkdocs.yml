@@ -52,8 +52,6 @@ theme:
 plugins:
   - search
   - mermaid2
-  - table-reader
-  - macros
   - autolinks
   - minify:
       minify_html: true

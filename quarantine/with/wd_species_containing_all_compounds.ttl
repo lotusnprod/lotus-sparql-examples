@@ -20,20 +20,21 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#title: Which species contain all of the following structures?
 SELECT DISTINCT ?taxon ?taxon_name
 WITH {
   SELECT DISTINCT ?structure ?smiles WHERE {
     SERVICE idsm:wikidata {
       VALUES ?smiles {
-        \"C=C[C@H]1[C@@H](OC=C2C1=CCOC2=O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O\"                             # Gentiopicrin
-        \"C=C[C@H]1[C@@H](OC=C2[C@]1(CCOC2=O)O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O\"                        # Swertiamarin
-        \"C=C[C@@H]1[C@@H]2CCOC(=O)C2=CO[C@H]1O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)OC(=O)C4=C(C=C(C=C4O)O)O\"  # Amarogentin
-        \"COC1=CC(=C2C(=C1)OC3=C(C=CC(=C3C2=O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)O)O\"                     # Swertianolin
+        "C=C[C@H]1[C@@H](OC=C2C1=CCOC2=O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O"                             # Gentiopicrin
+        "C=C[C@H]1[C@@H](OC=C2[C@]1(CCOC2=O)O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O"                        # Swertiamarin
+        "C=C[C@@H]1[C@@H]2CCOC(=O)C2=CO[C@H]1O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)OC(=O)C4=C(C=C(C=C4O)O)O"  # Amarogentin
+        "COC1=CC(=C2C(=C1)OC3=C(C=CC(=C3C2=O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)O)O"                     # Swertianolin
       }
       # Exact match similarity (allows for different SMILES representations)
       ?structure sachem:similarCompoundSearch [
         sachem:query ?smiles;
-        sachem:cutoff \"1.0\"^^xsd:double
+        sachem:cutoff "1.0"^^xsd:double
       ].
     }
   }

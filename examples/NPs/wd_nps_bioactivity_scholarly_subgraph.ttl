@@ -26,6 +26,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Which natural products with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references?
 SELECT ?organism ?organism_name ?compound ?compound_smiles ?bioactivity ?isolation_reference ?reference_title WHERE {
     ?organism (wdt:P171*) wd:Q62606918;
     wdt:P225 ?organism_name.
@@ -35,7 +36,7 @@ SELECT ?organism ?organism_name ?compound ?compound_smiles ?bioactivity ?isolati
     (wdt:P2868/wdt:P486) ?meshId.
     ?mesh wdt:P486 ?meshId;
     rdfs:label ?bioactivity.
-    FILTER(LANGMATCHES(LANG(?bioactivity), \"EN\"))
+    FILTER(LANGMATCHES(LANG(?bioactivity), "EN"))
     ?statement ps:P703 ?organism;
     prov:wasDerivedFrom ?ref.
     ?ref pr:P248 ?isolation_reference.

@@ -17,6 +17,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX target: <http://www.wikidata.org/entity/Q191364>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?
 SELECT DISTINCT ?compound ?compoundLabel ?taxon_with_compound ?another_taxon_with_compound ?taxon_without_compound WITH {
 SELECT DISTINCT ?compound ?taxon_YES_1 ?taxon_YES_2
 WHERE {
@@ -49,7 +50,7 @@ wd:Q59199015
 ?taxon_NO wdt:P225 ?taxon_without_compound .
 ?compound (wdt:P31*/wdt:P279*) ?classes .
 ?compound rdfs:label ?compoundLabel.
-FILTER(LANG(?compoundLabel) = \"en\").
+FILTER(LANG(?compoundLabel) = "en").
 }
 LIMIT 10000
 """;

@@ -21,14 +21,15 @@ PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#title: How many compounds are structurally similar to compounds labeled as antibiotics? Results are grouped by the parent taxon of the organism they were found in.
 SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?CUTOFF {
-            \"0.9\"^^xsd:double
+            "0.9"^^xsd:double
         }
         SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
             VALUES ?MESH {
-                \"D000900\"
+                "D000900"
             }
             ?antibiotic ((wdt:P279*)/wdt:P2868/wdt:P486) ?MESH;
             wdt:P233 ?smiles.

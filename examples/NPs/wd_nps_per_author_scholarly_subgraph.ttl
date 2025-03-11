@@ -20,7 +20,6 @@ rdfs:comment "How many structure-organism pairs have been referenced by certain 
 rdfs:label " Natural products per author";
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-#defaultView:BubbleChart
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
@@ -29,6 +28,8 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
+#title: How many structure-organism pairs have been referenced by certain authors? (Here, two senior natural products chemists are compared to the late Ferdinand Bohlmann)
+#defaultView:BarChart
 SELECT ?authors_namesLabel (COUNT(DISTINCT(?compound)) AS ?count) WHERE {
     ?compound p:P703 ?stmt.         # statement found in taxon
     ?stmt prov:wasDerivedFrom ?ref. # get the reference
@@ -41,7 +42,7 @@ SELECT ?authors_namesLabel (COUNT(DISTINCT(?compound)) AS ?count) WHERE {
     SERVICE wdsubgraph:scholarly_articles {
       ?art wdt:P50 ?authors_names.  # limit to references containing the author names
     }
-    SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\". }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }
 GROUP BY ?authors_namesLabel
 ORDER BY DESC (?count)

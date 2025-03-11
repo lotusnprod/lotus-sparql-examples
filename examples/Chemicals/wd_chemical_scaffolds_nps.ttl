@@ -25,10 +25,11 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#title: Which organisms contain at least 100 indolic scaffolds? Results ordered by parent taxon.
 SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?SUBSTRUCTURE {
-            \"C12=C(C=CC=C2)C=CN1\" # indolic scaffold
+            "C12=C(C=CC=C2)C=CN1" # indolic scaffold
         }
         ?compound sachem:substructureSearch [
         sachem:query ?SUBSTRUCTURE

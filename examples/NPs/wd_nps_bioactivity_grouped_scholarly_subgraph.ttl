@@ -15,7 +15,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_bioactivity_grouped_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which compounds with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references? (grouped)"@en ;
+rdfs:comment "Bioactive compounds isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related taxa and references (grouped)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -26,10 +26,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which compounds with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references? (grouped)
-SELECT ?organism ?organism_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = "|") AS ?bioactivities) ?isolation_reference ?reference_title WHERE {
-    ?organism (wdt:P171*) wd:Q62606918;
-    wdt:P225 ?organism_name.
+#title: Bioactive compounds isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related taxa and references (grouped).
+SELECT ?taxon ?taxon_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = "|") AS ?bioactivities) ?isolation_reference ?reference_title WHERE {
+    ?taxon (wdt:P171*) wd:Q62606918;
+    wdt:P225 ?taxon_name.
     ?compound wdt:P235 ?compound_id;
     wdt:P233 ?compound_smiles;
     p:P703 ?statement;
@@ -37,7 +37,7 @@ SELECT ?organism ?organism_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINC
     ?mesh wdt:P486 ?meshId;
     rdfs:label ?meshLabel.
     FILTER(LANGMATCHES(LANG(?meshLabel), "EN"))
-    ?statement ps:P703 ?organism;
+    ?statement ps:P703 ?taxon;
     prov:wasDerivedFrom ?ref.
     ?ref pr:P248 ?isolation_reference.
     SERVICE wdsubgraph:scholarly_articles {
@@ -46,7 +46,7 @@ SELECT ?organism ?organism_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINC
     }
     FILTER(((YEAR(?reference_date)) >= 2014 ) && ((YEAR(?reference_date)) <= 2019 ))
 }
-GROUP BY ?organism ?organism_name ?compound ?compound_smiles ?isolation_reference ?reference_title
+GROUP BY ?taxon ?taxon_name ?compound ?compound_smiles ?isolation_reference ?reference_title
 LIMIT 10000
 """;
 schema:target <https://query.wikidata.org/sparql> ;

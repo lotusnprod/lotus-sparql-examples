@@ -11,21 +11,21 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_from_ottid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "What are the compounds found in (children) organisms corresponding to a given ott_id?"@en ;
+rdfs:comment "Compounds found in (children) taxa of ott_id."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: What are the compounds found in (children) organisms corresponding to a given ott_id?
-SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey ?childrenLabel WHERE {
+#title: Compounds found in (children) taxa of ott_id.
+SELECT DISTINCT ?compound ?compoundLabel ?compound_inchikey ?childrenLabel WHERE {
     VALUES ?ott_id {
         "332362"
         "1000758"
     }
     ?taxon wdt:P9157 ?ott_id.
     ?children (wdt:P171*) ?taxon.
-    ?structure wdt:P235 ?structure_inchikey;
+    ?compound wdt:P235 ?compound_inchikey;
     wdt:P703 ?children.
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }

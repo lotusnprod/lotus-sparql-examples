@@ -15,7 +15,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_chemical_scaffolds_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which organisms contain indolic scaffolds? Count occurences, group and order the results by the parent taxon"@en ;
+rdfs:comment "Organisms containing indolic scaffolds. Count occurences by parent taxon."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>
@@ -25,7 +25,7 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-#title: Which organisms contain at least 100 indolic scaffolds? Results ordered by parent taxon.
+#title: Organisms containing indolic scaffolds. Count occurences by parent taxon.
 SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?SUBSTRUCTURE {

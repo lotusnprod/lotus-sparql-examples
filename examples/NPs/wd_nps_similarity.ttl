@@ -14,7 +14,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_nps_similarity a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "How many compounds are structurally similar to eugenol and eugenyl acetate? Results are grouped by the parent taxon of the organism they were found in."@en ;
+rdfs:comment "Compounds structurally similar to eugenol and eugenyl acetate, grouped by parent taxon."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>
@@ -23,7 +23,7 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-#title:How many compounds are structurally similar to eugenol and eugenyl acetate? Results are grouped by the parent taxon of the organism they were found in.
+#title: Compounds structurally similar to eugenol and eugenyl acetate, grouped by parent taxon.
 SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?CUTOFF {

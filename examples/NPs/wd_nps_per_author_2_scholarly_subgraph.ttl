@@ -17,7 +17,7 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_known_pigments a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which authors isolated the most natural products (based on a sample of 10,000 compounds)? Return the top 30 authors by count."@en ;
+rdfs:comment "Top 30 authors reporting the most natural products (sample of 10,000)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
@@ -29,7 +29,7 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: Which authors isolated the most natural products (based on a sample of 10,000 compounds)? Return the top 30 authors by count.
+#title: Top 30 authors reporting the most natural products (sample of 10,000).
 #defaultView:BubbleChart
 SELECT ?authorLabel ?nationalityLabel ?rgb (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     {

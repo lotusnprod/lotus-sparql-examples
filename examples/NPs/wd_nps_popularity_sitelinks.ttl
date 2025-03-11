@@ -11,14 +11,14 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_popularity_sitelinks a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which are the most popular natural products based on the number of sitelinks on their corresponding QID?"@en ;
+rdfs:comment "Most popular natural products by number of sitelinks."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: Which are the most popular natural products based on the number of sitelinks on their corresponding QID?
+#title: Most popular natural products by number of sitelinks.
 SELECT DISTINCT ?np ?sitelinks WHERE {
     hint:Query hint:optimizer "None".
     { SELECT DISTINCT ?sitelinks WHERE { [] wikibase:sitelinks ?sitelinks. } }

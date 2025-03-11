@@ -1,0 +1,49 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pr: <http://www.wikidata.org/prop/reference/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdsubgraph: <https://query.wikidata.org/subgraph/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_nps_fungi_ncbi a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Which natural products were isolated from Fungi (Q764), with an NCBI ID?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Which natural products were isolated from Fungi (Q764), with an NCBI ID?
+SELECT ?organism ?organism_name ?organism_ncbi ?compound ?compound_inchikey ?compound_smiles_canonical ?compound_smiles_isomeric ?reference ?reference_doi WHERE {
+  ?organism (wdt:P171*) wd:Q764;
+                        wdt:P685 ?organism_ncbi;
+                        wdt:P225 ?organism_name.
+  ?compound wdt:P235 ?compound_inchikey;
+            wdt:P233 ?compound_smiles_canonical;
+            p:P703 ?statement.
+  OPTIONAL { ?compound wdt:P2017 ?compound_smiles_isomeric. }
+  ?statement ps:P703 ?organism;
+             prov:wasDerivedFrom/pr:P248 ?reference.
+  SERVICE wdsubgraph:scholarly_articles {
+    ?reference wdt:P356 ?reference_doi.
+  }
+}
+LIMIT 300000
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <https://query.wikidata.org/subgraph/scholarly_articles> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

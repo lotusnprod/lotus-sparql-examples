@@ -21,6 +21,7 @@ PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
+#title: What are the compounds found in Arabidopsis thaliana (Q158695) and Celastrus (Q811662) or children taxa?
 SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey ?childLabel WHERE {
     {
         SELECT ?child WHERE {
@@ -32,7 +33,7 @@ SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey ?childLabel WHERE
     hint:Prior hint:runFirst TRUE.
     ?structure wdt:P235 ?structure_inchikey;
     wdt:P703 ?child.
-    SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\". }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }
 """;
 schema:target <https://query.wikidata.org/sparql> ;

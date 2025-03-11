@@ -19,6 +19,7 @@ PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
+#title: What are the compounds found in taxon known to treat gram-positive infections (Q55789782)?
 SELECT DISTINCT ?infection ?infectionLabel ?structure ?structure_smiles ?taxon ?taxon_name WHERE {
     VALUES ?disease {
         wd:Q55789782   # Gram-positive
@@ -31,7 +32,7 @@ SELECT DISTINCT ?infection ?infectionLabel ?structure ?structure_smiles ?taxon ?
     ?structure wdt:P233 ?structure_smiles;
     wdt:P703 ?taxon.
     ?taxon wdt:P225 ?taxon_name.
-    SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\". }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }
 """;
 schema:target <https://query.wikidata.org/sparql> ;

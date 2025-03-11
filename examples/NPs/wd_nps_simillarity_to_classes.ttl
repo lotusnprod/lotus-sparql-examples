@@ -23,10 +23,11 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#title: What are the parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those reported in Quillaja saponaria (Q2382775)?
 SELECT DISTINCT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?CUTOFF {
-            \"0.9\"^^xsd:double
+            "0.9"^^xsd:double
         }
         SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
             VALUES ?taxon_1 {

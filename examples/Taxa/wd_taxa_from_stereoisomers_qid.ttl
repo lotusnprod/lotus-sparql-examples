@@ -18,13 +18,14 @@ PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
+#title: Which organisms are known to contain stereoisomers of Beta-Sitosterol (Q121802)?
 SELECT ?taxon_name ?compound ?InChIKey WHERE {
     VALUES ?target {
         wd:Q121802
     }
     ?target wdt:P235 ?queryKey.
     ?compound wdt:P235 ?InChIKey.
-    FILTER (REGEX(STR(?InChIKey), CONCAT(\"^\", SUBSTR($queryKey,1,14), \"-\")))
+    FILTER (REGEX(STR(?InChIKey), CONCAT("^", SUBSTR($queryKey,1,14), "-")))
     FILTER (?InChIKey != ?queryKey)
     ?compound (wdt:P703/wdt:P225) ?taxon_name.
 }

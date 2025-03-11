@@ -19,6 +19,7 @@ PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
+#title: Which are the most popular natural products based on the number of items named after them?
 SELECT DISTINCT ?np ?npLabel (COUNT(DISTINCT ?item) AS ?count) WHERE {
     ?item wdt:P138 ?np.
     ?np p:P703 [];
@@ -26,7 +27,7 @@ SELECT DISTINCT ?np ?npLabel (COUNT(DISTINCT ?item) AS ?count) WHERE {
     wdt:P274 ?formula.
     FILTER (?mass > 100)         # Removes compounds such as water, ethanol, etc.
     FILTER(STRLEN(?formula) > 2) # Removes pure substances
-    SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\". }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }
 GROUP BY ?np ?npLabel
 ORDER BY DESC (?count)

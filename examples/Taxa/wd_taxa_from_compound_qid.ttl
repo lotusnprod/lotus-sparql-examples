@@ -14,6 +14,7 @@ sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Which organisms are known to contain Beta-Sitosterol (Q121802)?
 SELECT DISTINCT ?taxon ?taxon_name WHERE {
     VALUES ?compound {
         wd:Q121802                     # You can remove the Qxxxxxx and hit Ctrl+space, type the first letters and it should autocomplete

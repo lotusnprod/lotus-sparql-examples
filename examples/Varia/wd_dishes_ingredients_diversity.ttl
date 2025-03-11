@@ -23,22 +23,23 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
+#title: Which are the ingredients of dishes and the diversity of the taxa they originate from?
 SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (COUNT(DISTINCT ?parent) AS ?parents) WHERE {
     {
         SELECT DISTINCT ?dish ?dishLabel ?ingredient ?taxon WHERE {
             {
                 SELECT DISTINCT ?dish ?dishLabel ?ingredient WHERE {
-                    hint:Query hint:optimizer \"None\".
+                    hint:Query hint:optimizer "None".
                     ?dish wdt:P31 wd:Q746549;
                     (wdt:P527+) ?ingredient.
-                    hint:Prior hint:gearing \"forward\".
+                    hint:Prior hint:gearing "forward".
                     SERVICE wikibase:label {
-                        bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],mul,en\".
+                        bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en".
                         ?dish rdfs:label ?dishLabel.
                     }
                 }
             }
-            hint:Prior hint:runFirst \"true\".
+            hint:Prior hint:runFirst "true".
             ?ingredient (wdt:P186*) ?subingredient.
             {
                 ?subingredient wdt:P31 wd:Q16521.

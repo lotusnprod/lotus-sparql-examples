@@ -27,6 +27,7 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: What are the chemical compounds found in marine organisms and the articles reporting them?
 SELECT DISTINCT ?structure ?structure_smiles ?reference ?reference_title ?reference_doi WHERE {
     {
         SELECT ?child WHERE {

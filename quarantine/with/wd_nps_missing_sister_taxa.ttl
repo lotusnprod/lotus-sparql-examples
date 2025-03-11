@@ -15,7 +15,8 @@ sh:select """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-SELECT DISTINCT ?compound ?compoundLabel ?taxonname_with_compound ?taxonname_without_compound ?parent_taxon WITH{
+#title: What are examples of organisms where compounds were found in an organism sharing the same parent taxon, but not the organism itself?
+SELECT DISTINCT ?compound ?compoundLabel ?taxonname_with_compound ?taxonname_without_compound ?parent_taxon WITH {
 SELECT DISTINCT ?compound ?taxon_with_compound ?parent_taxon
 WHERE {
 ?compound wdt:P235 ?inchikey.
@@ -39,7 +40,7 @@ FILTER NOT EXISTS {?compound wdt:P703 ?taxon_without_compound.}
 ?taxon_with_compound wdt:P225 ?taxonname_with_compound.
 ?taxon_without_compound wdt:P225 ?taxonname_without_compound.
 ?compound rdfs:label ?compoundLabel.
-FILTER(LANG(?compoundLabel) = \"en\").
+FILTER(LANG(?compoundLabel) = "en").
 }
 LIMIT 10000
 """;

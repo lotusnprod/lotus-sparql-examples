@@ -23,7 +23,8 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-SELECT ?organism ?organism_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = \"|\") AS ?bioactivities) ?isolation_reference ?reference_title WHERE {
+#title: Which compounds with known bioactivities were isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related organisms and references? (grouped)
+SELECT ?organism ?organism_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = "|") AS ?bioactivities) ?isolation_reference ?reference_title WHERE {
     ?organism (wdt:P171*) wd:Q62606918;
     wdt:P225 ?organism_name.
     ?compound wdt:P235 ?compound_id;
@@ -32,7 +33,7 @@ SELECT ?organism ?organism_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINC
     (wdt:P2868/wdt:P486) ?meshId.
     ?mesh wdt:P486 ?meshId;
     rdfs:label ?meshLabel.
-    FILTER(LANGMATCHES(LANG(?meshLabel), \"EN\"))
+    FILTER(LANGMATCHES(LANG(?meshLabel), "EN"))
     ?statement ps:P703 ?organism;
     prov:wasDerivedFrom ?ref.
     ?ref pr:P248 ?isolation_reference.

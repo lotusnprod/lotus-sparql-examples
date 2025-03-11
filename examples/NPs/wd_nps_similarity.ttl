@@ -23,10 +23,11 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#title:How many compounds are structurally similar to eugenol and eugenyl acetate? Results are grouped by the parent taxon of the organism they were found in.
 SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?CUTOFF {
-            \"0.85\"^^xsd:double
+            "0.85"^^xsd:double
         }
         SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
             VALUES ?derivatives {

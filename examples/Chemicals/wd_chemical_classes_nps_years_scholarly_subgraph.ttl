@@ -25,7 +25,8 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-SELECT ?compound ?compound_inchi (GROUP_CONCAT(DISTINCT ?isolation_reference; SEPARATOR = \"|\") AS ?isolation_references) (GROUP_CONCAT(DISTINCT ?reference_title; SEPARATOR = \"|\") AS ?references_titles) WHERE {
+#title: Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?
+SELECT ?compound ?compound_inchi (GROUP_CONCAT(DISTINCT ?isolation_reference; SEPARATOR = "|") AS ?isolation_references) (GROUP_CONCAT(DISTINCT ?reference_title; SEPARATOR = "|") AS ?references_titles) WHERE {
     VALUES ?taxon {
         wd:Q335130
     }

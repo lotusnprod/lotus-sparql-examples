@@ -26,6 +26,8 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Which pigments are found in which taxa, according to which reference?
+# special thanks goes to User:Lmichan for updating this information!
 SELECT DISTINCT ?compound ?compoundLabel ?taxon ?taxonname ?DOI WHERE {
     ?compound p:P703 ?P703statement;
     ((wdt:P31*)/(wdt:P279*)) wd:Q161179.
@@ -36,7 +38,7 @@ SELECT DISTINCT ?compound ?compoundLabel ?taxon ?taxonname ?DOI WHERE {
     }
     ?taxon wdt:P225 ?taxonname.
     ?compound rdfs:label ?compoundLabel.
-    FILTER((LANG(?compoundLabel)) = \"en\")
+    FILTER((LANG(?compoundLabel)) = "en")
 }
 ORDER BY (?compoundLabel)
 LIMIT 10000

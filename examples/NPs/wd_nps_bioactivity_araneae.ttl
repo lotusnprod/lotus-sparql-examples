@@ -15,7 +15,8 @@ sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT DISTINCT ?structure ?structure_inchikey (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = \"|\") AS ?bioactivities) WHERE {
+#title: What are the biological activities of compounds found in Araneae (Q1357) or children taxa?
+SELECT DISTINCT ?structure ?structure_inchikey (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = "|") AS ?bioactivities) WHERE {
     VALUES ?taxon {
         wd:Q1357
     }
@@ -24,7 +25,7 @@ SELECT DISTINCT ?structure ?structure_inchikey (GROUP_CONCAT(DISTINCT ?meshLabel
     (wdt:P2868/wdt:P486) ?meshId.
     ?mesh wdt:P486 ?meshId;
     rdfs:label ?meshLabel.
-    FILTER(LANG(?meshLabel) = \"en\")
+    FILTER(LANG(?meshLabel) = "en")
 }
 GROUP BY ?structure ?structure_inchikey
 LIMIT 100

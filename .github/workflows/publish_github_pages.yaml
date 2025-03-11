@@ -32,37 +32,24 @@ jobs:
         java-version: '21'
     
     - name: Install tester
-      run: wget -q "https://github.com/sib-swiss/sparql-examples-utils/releases/download/v2.0.15/sparql-examples-utils-2.0.15-uber.jar" -O sparql-examples-utils-uber.jar
-
-    - name: copy LICENSE.md and README.md
-      run: mkdir docs; cp LICENSE.md docs; cp README.md docs/index.md
-
-    - name: Run and log tests
-      continue-on-error: true # ignore a failing test as we want to log them
-      run: java -jar sparql-examples-utils-uber.jar test -i examples/ -p all --status-markdown docs/status.md
+      run: wget "https://github.com/sib-swiss/sparql-examples-utils/releases/download/v2.0.15/sparql-examples-utils-2.0.15-uber.jar" -O sparql-examples-utils-uber.jar
 
     - name: generate markdown
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -m 
-
-    - name: move markdown files into docs
-      run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.md "docs/${i}/"; done
     
     - name: generate rq files
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -r
-
-    - name: copy rq files into docs
-      run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.rq "docs/${i}/"; done
-    
-    - name: copy ttl files into docs
-      run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.ttl "docs/${i}/"; done
-
-    - name: Build with mkdocs
-      run: python3 -m venv venv; source venv/bin/activate; pip install mkdocs; pip install mkdocs-mermaid2-plugin mkdocs-minify-plugin mkdocs-windmill; mkdocs build
 
     - name: Setup Pages
       id: pages
       uses: actions/configure-pages@v5
 
+    - name: Build with Jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: ./
+        destination: ./_site
+       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
 

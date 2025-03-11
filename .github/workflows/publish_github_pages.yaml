@@ -36,20 +36,26 @@ jobs:
 
     - name: generate markdown
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -m 
+      
+    - name: move markdown files into docs
+      run: for i in examples/*;do mkdir -p docs/${i};cp ${i}/*.md docs/${i}/;done
     
     - name: generate rq files
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -r
+
+    - name: copy rq files into docs
+      run: for i in examples/*;do cp ${i}/*.rq docs/${i}/;done
+    
+    - name: copy ttl files into docs
+      run: for i in examples/*;do cp ${i}/*.ttl docs/${i}/;done
+
+    - name: Build with mkdocs
+      run: python3 -m venv venv; source venv/bin/activate; pip install mkdocs;pip install mkdocs-mermaid2-plugin mkdocs-windmill;mkdocs build
 
     - name: Setup Pages
       id: pages
       uses: actions/configure-pages@v5
 
-    - name: Build with Jekyll
-      uses: actions/jekyll-build-pages@v1
-      with:
-        source: ./
-        destination: ./_site
-       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
 

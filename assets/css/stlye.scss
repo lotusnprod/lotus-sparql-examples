@@ -1,0 +1,47 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Override dinky theme width constraints */
+.wrapper {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+section {
+  width: auto;
+  max-width: none;
+  float: none;
+  padding: 20px;
+  margin-left: 220px; /* Keep space for the header */
+}
+
+header {
+  position: fixed;
+  width: 200px;
+  padding: 20px 0;
+}
+
+footer {
+  width: auto;
+  float: none;
+  position: static;
+  clear: both;
+  padding: 20px 0;
+  margin-left: 220px; /* Match the section margin */
+}
+
+/* Media query for responsive design */
+@media print, screen and (max-width: 960px) {
+  section, footer {
+    margin-left: 0;
+  }
+  
+  header {
+    position: static;
+    width: 100%;
+  }
+}

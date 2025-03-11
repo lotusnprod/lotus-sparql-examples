@@ -1,0 +1,86 @@
+# Project Metadata
+site_name: "LOTUS SPARQL examples"
+site_description: "This repository provides a collection of SPARQL query examples in various formats, tailored for different projects linked to LOTUS with publicly available SPARQL endpoints."
+site_url: "https://lotus.nprod.net/lotus-sparql-examples"
+repo_url: "https://github.com/lotusnprod/lotus-sparql-example"
+edit_uri: "edit/main/docs/"
+
+# Navigation Structure
+nav:
+  - Home: index.md
+  - Examples:
+      - Chemicals: examples/Chemicals/index.md
+      - Maintenance: examples/Maintenance/index.md
+      - NPs: examples/NPs/index.md
+      - Taxa: examples/Taxa/index.md
+      - Varia: examples/Varia/index.md
+  - Documentation:
+      - Readme: README.md
+  - About:
+      - License: LICENSE.md
+
+# Build Settings
+site_dir: _site
+
+# Theme Customization
+theme:
+  name: windmill
+  custom_dir: custom_theme/
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - toc.integrate
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: blue
+      accent: pink
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: pink
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+
+# Plugins for Extra Functionality
+plugins:
+  - search
+  - mermaid2
+  - table-reader
+  - macros
+  - autolinks
+  - minify:
+      minify_html: true
+
+# Markdown Enhancements
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: "#"
+
+# Extra Customization
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/lotusnprod/lotus-sparql-example

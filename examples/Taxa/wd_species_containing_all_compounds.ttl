@@ -1,0 +1,67 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Taxa/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix hint: <http://www.bigdata.com/queryHints#> .
+@prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
+@prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:wd_species_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Which species contain all of the following structures?"@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
+PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#title: Which species contain at least n of the following structures?
+SELECT DISTINCT ?taxon ?taxon_name WHERE {
+  VALUES ?n {4}
+  {
+    SELECT ?taxon ?taxon_name (COUNT(DISTINCT ?structure) AS ?structureCount) WHERE {
+      {
+        SELECT DISTINCT ?taxon ?taxon_name ?structure WHERE {
+          {
+            SELECT DISTINCT ?structure ?smiles WHERE {
+              SERVICE idsm:wikidata {
+                VALUES ?smiles {
+                  "C=C[C@H]1[C@@H](OC=C2C1=CCOC2=O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O"
+                  "C=C[C@H]1[C@@H](OC=C2[C@]1(CCOC2=O)O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O"
+                  "C=C[C@@H]1[C@@H]2CCOC(=O)C2=CO[C@H]1O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)OC(=O)C4=C(C=C(C=C4O)O)O"
+                  "COC1=CC(=C2C(=C1)OC3=C(C=CC(=C3C2=O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)O)O"
+                }
+                ?structure sachem:similarCompoundSearch [
+                  sachem:query ?smiles;
+                               sachem:cutoff "1.0"^^xsd:double
+                ].
+              }
+            }
+          } hint:Prior hint:runFirst "true".
+          ?structure wdt:P703 ?child.
+          ?child (wdt:P171*) ?taxon.
+          ?taxon wdt:P225 ?taxon_name;
+            wdt:P105 ?taxon_rank.
+          FILTER(?taxon_rank = wd:Q7432)
+        }
+      }
+    }
+    GROUP BY ?taxon ?taxon_name
+  }
+  FILTER((xsd:integer(?structureCount)) >= ?n)
+}
+LIMIT 10000
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products", "structural similarity", "taxa" ;
+dc:creator "Lotus Contributors" .

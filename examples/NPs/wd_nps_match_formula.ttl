@@ -8,18 +8,18 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_match_formula a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which taxa contain structures corresponding to the following chemical formula?"@en ;
+rdfs:comment "Taxa containing compounds corresponding to chemical formula."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which taxa contain structures corresponding to the following chemical formula?
-SELECT DISTINCT ?structure ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {
+#title: Taxa containing compounds corresponding to chemical formula.
+SELECT DISTINCT ?compound ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {
   {
     VALUES ?formula {
       "C₉H₁₁Cl₂FN₂O₂S₂" # Use lower case digits ₁₂₃₄₅₆₇₈₉₀
       "C₂₂H₂₂O₉"
     }
-    ?structure wdt:P274 ?formula;
+    ?compound wdt:P274 ?formula;
     wdt:P233 ?smiles_canonical;
     wdt:P703 ?taxon.
     ?taxon wdt:P225 ?taxon_name.}

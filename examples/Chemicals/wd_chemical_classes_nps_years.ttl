@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_chemical_classes_nps_years a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?"@en ;
+rdfs:comment "Compounds labelled as terpenoid (Q426694) found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -22,7 +22,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Which compounds labelled as terpenoid (Q426694) were found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references?
+#title: Compounds labelled as terpenoid (Q426694) found in Aspergillus (Q335130) spp., between 2010 and 2020, with related references.
 SELECT ?compound ?compound_inchi (GROUP_CONCAT(DISTINCT ?isolation_reference; SEPARATOR = "|") AS ?isolation_references) (GROUP_CONCAT(DISTINCT ?reference_title; SEPARATOR = "|") AS ?references_titles) WHERE {
     VALUES ?taxon {
         wd:Q335130

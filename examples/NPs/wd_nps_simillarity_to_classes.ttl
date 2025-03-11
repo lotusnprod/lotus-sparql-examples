@@ -14,7 +14,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_nps_simillarity_to_classes a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "What are the parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those reported in Quillaja saponaria (Q2382775)?"@en ;
+rdfs:comment "Parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those found in Quillaja saponaria (Q2382775)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>
@@ -23,7 +23,7 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-#title: What are the parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those reported in Quillaja saponaria (Q2382775)?
+#title: Parent taxa containing the most oleanane triterpenoids (Q108544891) similar to those found in Quillaja saponaria (Q2382775).
 SELECT DISTINCT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WHERE {
     SERVICE idsm:wikidata {
         VALUES ?CUTOFF {
@@ -36,13 +36,13 @@ SELECT DISTINCT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?
             VALUES ?class {
                 wd:Q108544891
             }
-            ?structure wdt:P233 ?structure_smiles;
+            ?compound wdt:P233 ?compound_smiles;
             wdt:P703/(wdt:P171*) ?taxon_1;
-            wdt:P279 ?structure_class.
-            FILTER(?structure_class = ?class)
+            wdt:P279 ?compound_class.
+            FILTER(?compound_class = ?class)
         }
         ?compound sachem:similarCompoundSearch [
-        sachem:query ?structure_smiles;
+        sachem:query ?compound_smiles;
         sachem:cutoff ?CUTOFF
         ].
     } hint:Prior hint:runFirst TRUE.

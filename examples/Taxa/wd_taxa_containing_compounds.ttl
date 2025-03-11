@@ -14,7 +14,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_taxa_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which taxa contain at least n of the following structures?"@en ;
+rdfs:comment "Taxa containing at least n of the following compounds."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>
@@ -23,15 +23,15 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-#title: Which taxa contain at least n of the following structures?
+#title: Taxa containing at least n of the following compounds.
 SELECT DISTINCT ?taxon ?taxon_name WHERE {
   VALUES ?n {4}
   {
-    SELECT ?taxon ?taxon_name (COUNT(DISTINCT ?structure) AS ?structureCount) WHERE {
+    SELECT ?taxon ?taxon_name (COUNT(DISTINCT ?compound) AS ?compoundCount) WHERE {
       {
-        SELECT DISTINCT ?taxon ?taxon_name ?structure WHERE {
+        SELECT DISTINCT ?taxon ?taxon_name ?compound WHERE {
           {
-            SELECT DISTINCT ?structure ?smiles WHERE {
+            SELECT DISTINCT ?compound ?smiles WHERE {
               SERVICE idsm:wikidata {
                 VALUES ?smiles {
                   "C=C[C@H]1[C@@H](OC=C2C1=CCOC2=O)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O"
@@ -39,14 +39,14 @@ SELECT DISTINCT ?taxon ?taxon_name WHERE {
                   "C=C[C@@H]1[C@@H]2CCOC(=O)C2=CO[C@H]1O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)OC(=O)C4=C(C=C(C=C4O)O)O"
                   "COC1=CC(=C2C(=C1)OC3=C(C=CC(=C3C2=O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)O)O"
                 }
-                ?structure sachem:similarCompoundSearch [
+                ?compound sachem:similarCompoundSearch [
                   sachem:query ?smiles;
                                sachem:cutoff "1.0"^^xsd:double
                 ].
               }
             }
           } hint:Prior hint:runFirst "true".
-          ?structure wdt:P703 ?child.
+          ?compound wdt:P703 ?child.
           ?child (wdt:P171*) ?taxon.
           ?taxon wdt:P225 ?taxon_name.
         }
@@ -54,7 +54,7 @@ SELECT DISTINCT ?taxon ?taxon_name WHERE {
     }
     GROUP BY ?taxon ?taxon_name
   }
-  FILTER((xsd:integer(?structureCount)) >= ?n)
+  FILTER((xsd:integer(?compoundCount)) >= ?n)
 }
 LIMIT 10000
 """;

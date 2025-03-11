@@ -12,20 +12,20 @@
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
 ex:wd_nps_from_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "What are the compounds found in Mouse-ear cress Arabidopsis thaliana (Q158695) or children taxa?"@en ;
+rdfs:comment "Compounds found in Arabidopsis thaliana (Q158695) or children taxa."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
-#title: What are the compounds found in Mouse-ear cress Arabidopsis thaliana (Q158695) or children taxa?
-SELECT DISTINCT ?structure ?structureLabel ?structure_inchikey WHERE {
+#title: Compounds found in Arabidopsis thaliana (Q158695) or children taxa.
+SELECT DISTINCT ?compound ?compoundLabel ?compound_inchikey WHERE {
     VALUES ?taxon {
         wd:Q158695                             # You can remove the Qxxxxxx and hit Ctrl+space, type the first letters and it should autocomplete
     }
     ?children (wdt:P171*) ?taxon.              # Include children taxa
-    ?structure wdt:P235 ?structure_inchikey;   # Get the InChIKey
+    ?compound wdt:P235 ?compound_inchikey;     # Get the InChIKey
     wdt:P703 ?children.                        # Found in given taxon/taxa
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }

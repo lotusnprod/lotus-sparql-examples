@@ -9,12 +9,12 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 ex:wd_maintenance_nps_2 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)"@en ;
+rdfs:comment "Non-referenced compound-taxon pairs on Wikidata (limited to 10)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
-#title: Which are the available non-referenced structure-organism pairs on Wikidata? (limited to 10)
+#title: Non-referenced compound-taxon pairs on Wikidata (limited to 10).
 SELECT ?statement WHERE {
     [ p:P235 [];
     p:P703 ?statement; ]

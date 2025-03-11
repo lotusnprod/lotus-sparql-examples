@@ -5,6 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix bd: <http://www.bigdata.com/rdf#> .
 @prefix target: <http://www.wikidata.org/entity/Q191364> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
@@ -13,6 +14,7 @@ ex:wd_nps_missing_sister_taxa_zephyranthes a sh:SPARQLExecutable, sh:SPARQLSelec
 rdfs:comment "Which Zephyranthes (Q191364) spp. lack compounds known from at least two species in the genus?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
+PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX target: <http://www.wikidata.org/entity/Q191364>
 PREFIX wd: <http://www.wikidata.org/entity/>

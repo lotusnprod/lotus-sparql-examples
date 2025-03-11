@@ -48,7 +48,7 @@ SELECT ?authorLabel ?nationalityLabel ?rgb (COUNT(DISTINCT ?compound) AS ?count)
             ?stmt (prov:wasDerivedFrom/pr:P248) ?art.
         }
     }
-    hint:Prior hint:runFirst TRUE.
+    hint:Prior hint:runFirst true.
     SERVICE wdsubgraph:scholarly_articles {
       ?art wdt:P50 ?author.
     }

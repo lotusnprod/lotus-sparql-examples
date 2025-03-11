@@ -34,7 +34,7 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
         ?compound sachem:substructureSearch [
         sachem:query ?SUBSTRUCTURE
         ].
-    } hint:Prior hint:runFirst TRUE.
+    } hint:Prior hint:runFirst true.
     ?compound p:P703 ?statement.
     ?statement ps:P703/wdt:P171 ?parent_taxon.
     ?parent_taxon wdt:P225 ?parent_taxon_name.

@@ -44,7 +44,7 @@ SELECT DISTINCT ?compound ?compound_smiles ?reference ?reference_title ?referenc
             { ?child (wdt:P171*) wd:Q28524. }  # corals
         }
     }
-    hint:Prior hint:runFirst TRUE.
+    hint:Prior hint:runFirst true.
     ?compound wdt:P233 ?compound_smiles;
     p:P703[
     ps:P703 ?child;

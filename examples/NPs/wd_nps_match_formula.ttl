@@ -13,10 +13,11 @@ sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Which taxa contain structures corresponding to the following chemical formula?
-SELECT DISTINCT ?structure ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {{
+SELECT DISTINCT ?structure ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {
+  {
     VALUES ?formula {
-        "C₉H₁₁Cl₂FN₂O₂S₂" # Use lower case digits ₁₂₃₄₅₆₇₈₉₀
-        "C₂₂H₂₂O₉"
+      "C₉H₁₁Cl₂FN₂O₂S₂" # Use lower case digits ₁₂₃₄₅₆₇₈₉₀
+      "C₂₂H₂₂O₉"
     }
     ?structure wdt:P274 ?formula;
     wdt:P233 ?smiles_canonical;

@@ -51,10 +51,10 @@ jobs:
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -r
 
     - name: copy rq files into docs
-      run: for i in examples/*;do cp ${i}/*.rq docs/${i}/;done
+      run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.rq "docs/${i}/"; done
     
     - name: copy ttl files into docs
-      run: for i in examples/*;do cp ${i}/*.ttl docs/${i}/;done
+      run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.ttl "docs/${i}/"; done
 
     - name: Build with mkdocs
       run: python3 -m venv venv; source venv/bin/activate; pip install mkdocs;pip install mkdocs-mermaid2-plugin mkdocs-windmill;mkdocs build

@@ -35,7 +35,7 @@ jobs:
       run: wget -q "https://github.com/sib-swiss/sparql-examples-utils/releases/download/v2.0.15/sparql-examples-utils-2.0.15-uber.jar" -O sparql-examples-utils-uber.jar
 
     - name: copy LICENSE.md and README.md
-      run: mkdir docs;cp LICENSE.md docs; cp README.md docs/index.md
+      run: mkdir docs; cp LICENSE.md docs; cp README.md docs/index.md
 
     - name: Run and log tests
       continue-on-error: true # ignore a failing test as we want to log them
@@ -57,7 +57,7 @@ jobs:
       run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.ttl "docs/${i}/"; done
 
     - name: Build with mkdocs
-      run: python3 -m venv venv; source venv/bin/activate; pip install mkdocs;pip install mkdocs-mermaid2-plugin mkdocs-windmill;mkdocs build
+      run: python3 -m venv venv; source venv/bin/activate; pip install mkdocs; pip install mkdocs-mermaid2-plugin mkdocs-windmill; mkdocs build
 
     - name: Setup Pages
       id: pages

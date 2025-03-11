@@ -51,7 +51,6 @@ theme:
 plugins:
   - search
   - mermaid2
-  - autolinks
   - minify:
       minify_html: true
 

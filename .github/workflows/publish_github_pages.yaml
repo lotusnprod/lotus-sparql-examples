@@ -33,6 +33,13 @@ jobs:
     
     - name: Install tester
       run: wget "https://github.com/sib-swiss/sparql-examples-utils/releases/download/v2.0.15/sparql-examples-utils-2.0.15-uber.jar" -O sparql-examples-utils-uber.jar
+      
+    - name: copy LICENSE.md and README.md
+      run: mkdir docs;cp LICENSE.md docs; cp README.md docs/index.md
+
+    - name: Run and log tests
+      continue-on-error: true # ignore a failing test as we want to log them
+      run: java -jar sparql-examples-utils-uber.jar test -i examples/ -p all --status-markdown docs/status.md
 
     - name: generate markdown
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -m 

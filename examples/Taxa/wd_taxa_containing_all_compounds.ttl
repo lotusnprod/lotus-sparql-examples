@@ -14,7 +14,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:wd_taxa_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Which taxa contain all of the following structures?"@en ;
+rdfs:comment "Which taxa contain at least n of the following structures?"@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX hint: <http://www.bigdata.com/queryHints#>
@@ -23,7 +23,7 @@ PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-#title: Which species contain at least n of the following structures?
+#title: Which taxa contain at least n of the following structures?
 SELECT DISTINCT ?taxon ?taxon_name WHERE {
   VALUES ?n {4}
   {

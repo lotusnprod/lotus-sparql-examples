@@ -45,7 +45,7 @@ jobs:
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -m 
 
     - name: move markdown files into docs
-      run: for i in examples/*;do mkdir -p docs/${i};cp ${i}/*.md docs/${i}/;done
+      run: for i in examples/*/; do mkdir -p "docs/${i}"; cp "$i"/*.md "docs/${i}/"; done
     
     - name: generate rq files
       run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -r

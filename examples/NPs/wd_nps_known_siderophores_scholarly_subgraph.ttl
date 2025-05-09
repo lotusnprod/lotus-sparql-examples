@@ -11,7 +11,6 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
 @prefix wd: <http://www.wikidata.org/entity/> .
-@prefix wdsubgraph: <https://query.wikidata.org/subgraph/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_known_siderophores_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
@@ -23,7 +22,6 @@ PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Siderophores found in taxa (limited to 1000 results).
 SELECT DISTINCT ?compound ?compound_smiles ?compound_inchikey ?taxon ?taxon_name ?reference ?reference_doi WHERE {
@@ -46,7 +44,7 @@ SELECT DISTINCT ?compound ?compound_smiles ?compound_inchikey ?taxon ?taxon_name
 LIMIT 1000
 """;
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://query.wikidata.org/subgraph/scholarly_articles> ;
+spex:federatesWith <https://query-scholarly.wikidata.org/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

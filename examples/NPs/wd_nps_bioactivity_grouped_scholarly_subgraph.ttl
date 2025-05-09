@@ -11,7 +11,6 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
 @prefix wd: <http://www.wikidata.org/entity/> .
-@prefix wdsubgraph: <https://query.wikidata.org/subgraph/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_nps_bioactivity_grouped_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
@@ -24,7 +23,6 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Bioactive compounds isolated from Actinomycetes (Q62606918), between 2014 and 2019, with related taxa and references (grouped).
 SELECT ?taxon ?taxon_name ?compound ?compound_smiles (GROUP_CONCAT(DISTINCT ?meshLabel; SEPARATOR = "|") AS ?bioactivities) ?isolation_reference ?reference_title WHERE {
@@ -50,7 +48,7 @@ GROUP BY ?taxon ?taxon_name ?compound ?compound_smiles ?isolation_reference ?ref
 LIMIT 10000
 """;
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://query.wikidata.org/subgraph/scholarly_articles> ;
+spex:federatesWith <https://query-scholarly.wikidata.org/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

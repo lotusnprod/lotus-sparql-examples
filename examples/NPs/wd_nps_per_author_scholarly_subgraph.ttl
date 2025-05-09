@@ -39,7 +39,7 @@ SELECT ?authors_namesLabel (COUNT(DISTINCT(?compound)) AS ?count) WHERE {
         wd:Q40259636                # GFP
         wd:Q1405133                 # A german chemist of the 20th century ... Ferdinand Bohlmann
     }
-    SERVICE wdsubgraph:scholarly_articles {
+    SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?art wdt:P50 ?authors_names.  # limit to references containing the author names
     }
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }

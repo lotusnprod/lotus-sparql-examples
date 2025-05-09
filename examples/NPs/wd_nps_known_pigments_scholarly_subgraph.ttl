@@ -33,7 +33,7 @@ SELECT DISTINCT ?compound ?compoundLabel ?taxon ?taxonname ?DOI WHERE {
     ((wdt:P31*)/(wdt:P279*)) wd:Q161179.
     ?P703statement ps:P703 ?taxon;
     (prov:wasDerivedFrom/pr:P248) ?ref.
-    SERVICE wdsubgraph:scholarly_articles {
+    SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?ref wdt:P356 ?DOI.
     }
     ?taxon wdt:P225 ?taxonname.

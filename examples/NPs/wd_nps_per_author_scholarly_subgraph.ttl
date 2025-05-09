@@ -11,7 +11,6 @@
 @prefix pr: <http://www.wikidata.org/prop/reference/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
-@prefix wdsubgraph: <https://query.wikidata.org/subgraph/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
@@ -25,7 +24,6 @@ PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 #title: Count compound-taxon pairs referenced by authors.
@@ -48,7 +46,7 @@ GROUP BY ?authors_namesLabel
 ORDER BY DESC (?count)
 """;
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://query.wikidata.org/subgraph/scholarly_articles>, <http://wikiba.se/ontology#label> ;
+spex:federatesWith <https://query-scholarly.wikidata.org/sparql>, <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

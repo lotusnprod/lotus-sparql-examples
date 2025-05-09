@@ -49,7 +49,7 @@ SELECT DISTINCT ?compound ?compound_smiles ?reference ?reference_title ?referenc
     p:P703[
     ps:P703 ?child;
     (prov:wasDerivedFrom/pr:P248) ?reference ].
-    SERVICE wdsubgraph:scholarly_articles {
+    SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?reference wdt:P356 ?reference_doi;
       wdt:P1476 ?reference_title.
     }

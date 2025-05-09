@@ -39,7 +39,7 @@ SELECT DISTINCT ?compound ?compound_smiles ?compound_inchikey ?taxon ?taxon_name
     ps:P703 ?taxon;                             # get the taxon
     (prov:wasDerivedFrom/pr:P248) ?reference ]. # get the reference
     ?taxon wdt:P225 ?taxon_name.                # get the taxon scientific name
-    SERVICE wdsubgraph:scholarly_articles {
+    SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?reference wdt:P356 ?reference_doi.       # get the reference DOI
     } 
 }

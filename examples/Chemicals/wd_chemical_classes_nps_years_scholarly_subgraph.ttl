@@ -38,7 +38,7 @@ SELECT ?compound ?compound_inchi (GROUP_CONCAT(DISTINCT ?isolation_reference; SE
     p:P703 ?statement.
     ?statement ps:P703/(wdt:P171*) ?taxon;
     (prov:wasDerivedFrom/pr:P248) ?isolation_reference.
-    SERVICE wdsubgraph:scholarly_articles {
+    SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?isolation_reference wdt:P1476 ?reference_title;
       wdt:P577 ?reference_date.
     }

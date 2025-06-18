@@ -28,7 +28,8 @@ SELECT ?taxon ?taxon_name ?taxon_ncbi ?compound ?compound_inchikey ?compound_smi
   ?taxon (wdt:P171*) wd:Q764;
                         wdt:P685 ?taxon_ncbi;
                         wdt:P225 ?taxon_name.
-  ?compound wdt:P235 ?compound_inchikey;
+  ?compound wdt:P703 ?taxon;
+            wdt:P235 ?compound_inchikey;
             wdt:P233 ?compound_smiles_canonical;
             p:P703 ?statement.
   OPTIONAL { ?compound wdt:P2017 ?compound_smiles_isomeric. }

@@ -6,7 +6,6 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
 @prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
@@ -17,7 +16,6 @@ ex:wd_taxa_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecut
 rdfs:comment "Taxa containing at least n of the following compounds."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -45,7 +43,7 @@ SELECT DISTINCT ?taxon ?taxon_name WHERE {
                 ].
               }
             }
-          } hint:Prior hint:runFirst "true".
+          }
           ?compound wdt:P703 ?child.
           ?child (wdt:P171*) ?taxon.
           ?taxon wdt:P225 ?taxon_name.

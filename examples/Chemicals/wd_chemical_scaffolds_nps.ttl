@@ -6,7 +6,6 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
 @prefix p: <http://www.wikidata.org/prop/> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
@@ -18,7 +17,6 @@ ex:wd_chemical_scaffolds_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Taxa containing indolic scaffolds. Count occurences by parent taxon."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
@@ -34,14 +32,15 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
         ?compound sachem:substructureSearch [
         sachem:query ?SUBSTRUCTURE
         ].
-    } hint:Prior hint:runFirst true.
+    }
     ?compound p:P703 ?statement.
     ?statement ps:P703/wdt:P171 ?parent_taxon.
     ?parent_taxon wdt:P225 ?parent_taxon_name.
 }
 GROUP BY ?parent_taxon ?parent_taxon_name
 HAVING (?count > 100)
-ORDER BY DESC (?count)""";
+ORDER BY DESC (?count)
+""";
 schema:target <https://query.wikidata.org/sparql> ;
 spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;

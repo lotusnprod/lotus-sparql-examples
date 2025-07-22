@@ -6,7 +6,6 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix p: <http://www.wikidata.org/prop/> .
 @prefix pr: <http://www.wikidata.org/prop/reference/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -18,7 +17,6 @@ ex:wd_nps_source_marine_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelec
 rdfs:comment "Compounds found in marine taxa and their references."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
@@ -42,7 +40,6 @@ SELECT DISTINCT ?compound ?compound_smiles ?reference ?reference_title ?referenc
             { ?child (wdt:P171*) wd:Q28524. }  # corals
         }
     }
-    hint:Prior hint:runFirst true.
     ?compound wdt:P233 ?compound_smiles;
     p:P703[
     ps:P703 ?child;

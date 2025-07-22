@@ -39,7 +39,6 @@ SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (
                     }
                 }
             }
-            hint:Prior hint:runFirst "true".
             ?ingredient (wdt:P186*) ?subingredient.
             {
                 ?subingredient wdt:P31 wd:Q16521.
@@ -49,7 +48,6 @@ SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (
             { ?subingredient wdt:P1582 ?taxon. }
         }
     }
-    hint:Prior hint:runFirst true.
     ?taxon (wdt:P171*) ?parent.
 }
 GROUP BY ?dish ?dishLabel

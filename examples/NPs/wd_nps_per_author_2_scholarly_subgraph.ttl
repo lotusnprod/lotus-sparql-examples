@@ -7,7 +7,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 @prefix bd: <http://www.bigdata.com/rdf#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix p: <http://www.wikidata.org/prop/> .
 @prefix pr: <http://www.wikidata.org/prop/reference/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -20,7 +19,6 @@ rdfs:comment "Top 30 authors reporting the most natural products (sample of 10,0
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
@@ -41,12 +39,10 @@ SELECT ?authorLabel ?nationalityLabel ?rgb (COUNT(DISTINCT ?compound) AS ?count)
                     }
                 }
             }
-            hint:Prior hint:runFirst "true".
             ?compound p:P703 ?stmt.
             ?stmt (prov:wasDerivedFrom/pr:P248) ?art.
         }
     }
-    hint:Prior hint:runFirst true.
     SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?art wdt:P50 ?author.
     }

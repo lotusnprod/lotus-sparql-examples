@@ -6,7 +6,6 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix p: <http://www.wikidata.org/prop/> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
@@ -15,14 +14,11 @@ rdfs:comment "Most popular natural products by number of sitelinks."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 #title: Most popular natural products by number of sitelinks.
 SELECT DISTINCT ?np ?sitelinks WHERE {
-    hint:Query hint:optimizer "None".
     { SELECT DISTINCT ?sitelinks WHERE { [] wikibase:sitelinks ?sitelinks. } }
-    hint:Prior hint:runFirst FALSE.
     FILTER(?sitelinks > 90 )
     ?np wikibase:sitelinks ?sitelinks;
     p:P703 [];

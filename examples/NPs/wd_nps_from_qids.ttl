@@ -7,7 +7,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 @prefix bd: <http://www.bigdata.com/rdf#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
@@ -17,7 +16,6 @@ rdfs:comment "Compounds found in Arabidopsis thaliana (Q158695) and Celastrus (Q
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -30,7 +28,6 @@ SELECT DISTINCT ?compound ?compoundLabel ?compound_inchikey ?childLabel WHERE {
             { ?child (wdt:P171*) wd:Q811662. }
         }
     }
-    hint:Prior hint:runFirst true.
     ?compound wdt:P235 ?compound_inchikey;
     wdt:P703 ?child.
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }

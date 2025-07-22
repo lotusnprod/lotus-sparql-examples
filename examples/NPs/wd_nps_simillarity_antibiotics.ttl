@@ -6,7 +6,6 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
 @prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
@@ -16,7 +15,6 @@ ex:wd_nps_simillarity_antibiotics a sh:SPARQLExecutable, sh:SPARQLSelectExecutab
 rdfs:comment "Compounds structurally similar to compounds labeled as antibiotics grouped by parent taxon."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
-PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -38,7 +36,7 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
         sachem:query ?smiles;
         sachem:cutoff ?CUTOFF
         ].
-    } hint:Prior hint:runFirst true.
+    }
     ?compound wdt:P703/wdt:P171 ?parent_taxon.
     ?parent_taxon wdt:P225 ?parent_taxon_name.
 }

@@ -5,6 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 @prefix p: <http://www.wikidata.org/prop/> .
 @prefix pr: <http://www.wikidata.org/prop/reference/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -53,6 +54,7 @@ SELECT ?compoundLabel ?compound ?taxon ?taxonLabel ?reference ?referenceLabel ?s
     LIMIT 10
 """;
 schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <https://query-scholarly.wikidata.org/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

@@ -1,0 +1,58 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pr: <http://www.wikidata.org/prop/reference/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_nps_with_taxon_image_details a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "NPs with corresponding taxon image and details."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+SELECT ?compoundLabel ?compound ?taxon ?taxonLabel ?reference ?referenceLabel ?smiles ?taxon_image ?kingdom ?kingdomLabel WHERE {
+      VALUES ?compound {wd:Q2079986}
+      ?compound wdt:P233 ?smiles_c .
+      OPTIONAL { ?compound wdt:P2017 ?smiles_i . }
+      BIND(COALESCE(?smiles_i, ?smiles_c) AS ?smiles)
+      FILTER(BOUND(?smiles))
+      ?compound p:P703 ?statement .
+      ?statement ps:P703 ?taxon ;
+                 prov:wasDerivedFrom ?refnode .
+      ?refnode pr:P248 ?reference .
+      ?taxon wdt:P18 ?taxon_image .
+      ?taxon wdt:P171* ?kingdom .
+      FILTER(
+        ?kingdom IN (
+          wd:Q729,   # Animalia
+          wd:Q756,   # Plantae
+          wd:Q764,   # Fungi
+          wd:Q10876  # Bacteria (domain, not kingdom)
+        )
+      )
+      ?kingdom rdfs:label ?kingdomLabel . FILTER (lang(?kingdomLabel) = "en")
+      ?compound rdfs:label ?compoundLabel . FILTER (lang(?compoundLabel) = "en")
+      ?taxon rdfs:label ?taxonLabel . FILTER (lang(?taxonLabel) = "en")
+      SERVICE <https://query-scholarly.wikidata.org/sparql> {
+        ?reference rdfs:label ?referenceLabel . FILTER (lang(?referenceLabel) = "en")
+      }
+    }
+    LIMIT 10
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

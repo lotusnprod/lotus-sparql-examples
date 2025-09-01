@@ -5,12 +5,14 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
 
 ex:wd_nps_triples_labels a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "NPs triples labels."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
 SELECT ?compoundLabel ?taxonLabel ?referenceLabel WHERE {
       VALUES ?compound_qid {wd:Q2079986}
       VALUES ?taxon_qid {wd:Q135389}

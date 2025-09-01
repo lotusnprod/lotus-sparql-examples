@@ -1,0 +1,28 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:wd_nps_triples_labels a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "NPs triples labels."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?compoundLabel ?taxonLabel ?referenceLabel WHERE {
+      VALUES ?compound_qid {wd:Q2079986}
+      VALUES ?taxon_qid {wd:Q135389}
+      VALUES ?reference_qid {wd:Q104388277}
+      OPTIONAL { ?compound_qid rdfs:label ?compoundLabel . FILTER(LANG(?compoundLabel) = "en") }
+      OPTIONAL { ?taxon_qid rdfs:label ?taxonLabel . FILTER(LANG(?taxonLabel) = "en") }
+      SERVICE <https://query-scholarly.wikidata.org/sparql> {
+        OPTIONAL { ?reference_qid rdfs:label ?referenceLabel . FILTER(LANG(?referenceLabel) = "en") }
+      }
+    }
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

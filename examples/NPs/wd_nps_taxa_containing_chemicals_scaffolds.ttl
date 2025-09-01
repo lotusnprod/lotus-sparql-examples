@@ -1,6 +1,6 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Chemicals/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:wd_chemicals_scaffolds_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+ex:wd_nps_taxa_containing_chemicals_scaffolds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Taxa containing indolic scaffolds. Count occurences by parent taxon."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """

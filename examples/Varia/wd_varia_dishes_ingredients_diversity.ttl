@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
-ex:wd_dishes_ingredients_diversity a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+ex:wd_varia_dishes_ingredients_diversity a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Dishes with ingredients found in the most diverse taxa."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """

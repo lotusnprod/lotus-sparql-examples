@@ -13,7 +13,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:wd_chemical_scaffolds_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+ex:wd_chemicals_scaffolds_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Taxa containing indolic scaffolds. Count occurences by parent taxon."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """

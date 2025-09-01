@@ -1,0 +1,30 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Taxa/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_taxa_ambiguous_genera a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Taxa. Generic names corresponding to more than 1 QID."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Taxa. Generic names corresponding to more than 1 QID.
+SELECT DISTINCT ?name (COUNT(DISTINCT ?id) AS ?count) WHERE {
+  ?id wdt:P31 wd:Q16521;
+    wdt:P105 wd:Q34740;
+    wdt:P225 ?name.
+}
+GROUP BY ?name
+HAVING ((COUNT(?id)) > 1 )
+ORDER BY DESC (?count)
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products", "structural similarity", "taxa" ;
+dc:creator "Lotus Contributors" .

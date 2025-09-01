@@ -12,7 +12,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:wd_species_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+ex:wd_taxa_species_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Species containing at least n of the following compounds."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """

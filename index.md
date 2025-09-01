@@ -4,7 +4,6 @@ This repository provides a collection of SPARQL query examples in various format
 
 We continuously expand this collection to highlight diverse use cases, including:
 
-* [Chemicals](./examples/Chemicals/)
 * [NPs](./examples/NPs/)
 * [Taxa](./examples/Taxa/)
 * [Varia](./examples/Varia/)

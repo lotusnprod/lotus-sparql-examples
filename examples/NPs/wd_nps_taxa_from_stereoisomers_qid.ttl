@@ -1,6 +1,6 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Taxa/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
@@ -10,7 +10,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
-ex:wd_taxa_from_stereoisomers_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+ex:wd_nps_taxa_from_stereoisomers_qid a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Taxa containing stereoisomers of Beta-Sitosterol (Q121802)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """

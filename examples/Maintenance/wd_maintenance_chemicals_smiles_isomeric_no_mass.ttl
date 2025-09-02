@@ -9,7 +9,7 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_maintenance_chemicals_smiles_isomeric_no_mass a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemicals with isoemric SMILES but no mass."@en ;
+rdfs:comment "Chemicals with isomeric SMILES but no mass."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>

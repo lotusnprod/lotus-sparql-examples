@@ -9,12 +9,12 @@
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_maintenance_chemicals_smiles_isomeric_no_inchi a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemicals with isoemric SMILES but no InChI."@en ;
+rdfs:comment "Chemicals with isomeric SMILES but no InChI."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Chemicals with isoemric SMILES but no InChI
+#title: Chemicals with isomeric SMILES but no InChI
 SELECT ?structure ?smiles WHERE {
     VALUES ?classes {
         wd:Q113145171

@@ -1,0 +1,38 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Chemicals/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_chemical_classes_smarts a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Chemical classes defined by SMARTS."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Chemical classes defined by SMARTS
+SELECT * WHERE {
+    VALUES ?instance {
+        wd:Q15711994 # group of isomeric entities
+        wd:Q17339814 # group or class of chemical substances
+        wd:Q47154513 # structural class of chemical entities
+        wd:Q55640599 # group of chemical entities
+        wd:Q56256173 # class of chemical entities with similar applications or functions
+        wd:Q56256178 # class of chemical entities with similar source or occurrence
+        wd:Q55662456 # group of ortho, meta, para isomers
+        # wd:Q59199015 # group of stereoisomers # TODO see later on when fast enough
+        wd:Q72070508 # group or class of chemical entities
+        wd:Q74892521 # imprecise class of chemical entities
+    }
+    ?class wdt:P31 ?instance.
+    ?class wdt:P8533 ?structure.
+}
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "chemical classes" ;
+dc:creator "Lotus Contributors" .

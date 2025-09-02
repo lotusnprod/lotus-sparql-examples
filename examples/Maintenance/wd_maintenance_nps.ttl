@@ -13,7 +13,7 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
 ex:wd_maintenance_nps a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Referenced compound-taxon pairs on Wikidata (with P1582 and not P703)."@en ;
+rdfs:comment "Maintenance. Referenced compound-taxon pairs on Wikidata (with P1582 and not P703)."@en ;
 sh:prefixes _:sparql_examples_prefixes;
 sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
@@ -22,7 +22,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-#title: Referenced compound-taxon pairs on Wikidata (with P1582 and not P703).
+#title: Maintenance. Referenced compound-taxon pairs on Wikidata (with P1582 and not P703).
 SELECT DISTINCT (REPLACE(STR(?item), ".*Q", "Q") AS ?qid) (REPLACE(STR(?taxon), ".*Q", "Q") AS ?P703) (REPLACE(STR(?art), ".*Q", "Q") AS ?S248) WHERE {
     VALUES ?classes {
         wd:Q113145171
@@ -39,5 +39,5 @@ LIMIT 1000
 """;
 schema:target <https://query.wikidata.org/sparql> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "maintenance";
+schema:keywords "maintenance", "natural products";
 dc:creator "Lotus Contributors" .

@@ -1,0 +1,33 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Chemicals/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_maintenance_chemicals_formula_malformed a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Chemicals with malformed chemical formula."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Chemicals with malformed chemical formula
+SELECT DISTINCT ?structure ?formula ?smiles WHERE {
+    VALUES ?classes {
+        wd:Q113145171
+        wd:Q59199015
+    }
+    ?structure wdt:P274 ?formula.
+    ?structure wdt:P233 ?smiles.
+    ?structure wdt:P31 ?classes.
+    wd:P274 wdt:P1793 ?constraint.
+    FILTER(REPLACE(?formula, ?constraint, "") != "")
+}
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "maintenance", "chemicals" ;
+dc:creator "Lotus Contributors" .

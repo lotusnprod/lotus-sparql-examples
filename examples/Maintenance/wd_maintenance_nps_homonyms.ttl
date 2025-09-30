@@ -1,0 +1,45 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Maintenance/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+ex:wd_maintenance_nps_homonyms a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "Maintenance. Referenced compound-taxon pairs on Wikidata (assigned to incorrect homonym)."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: Maintenance. Referenced compound-taxon pairs on Wikidata (assigned to incorrect homonym).
+SELECT
+(REPLACE(STR(?compound), ".*Q", "Q") AS ?qid)
+(REPLACE(STR(?taxon_incorrect), ".*Q", "Q") AS ?MINUSP703) # To change manually to -P703
+(REPLACE(STR(?taxon_correct), ".*Q", "Q") AS ?P703)
+(REPLACE(STR(?reference), ".*Q", "Q") AS ?S248) WHERE {
+  VALUES ?taxon_incorrect {
+    wd:Q1651414
+  }
+  VALUES ?taxon_correct {
+    wd:Q44789
+  }
+  ?compound p:P703 ?statement.
+  ?statement ps:P703 ?taxon_incorrect;
+    (prov:wasDerivedFrom/pr:P248) ?reference.
+}
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "maintenance", "natural products";
+dc:creator "Lotus Contributors" .

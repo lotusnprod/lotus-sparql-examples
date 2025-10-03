@@ -27,7 +27,7 @@ SELECT ?taxon_name ?compound ?InChIKey WHERE {
     ?compound wdt:P235 ?InChIKey.
     FILTER (REGEX(STR(?InChIKey), CONCAT("^", SUBSTR($queryKey,1,14), "-")))
     FILTER (?InChIKey != ?queryKey)
-    ?compound (wdt:P703/wdt:P225) ?taxon_name.
+    ?compound wdt:P703 [wdt:P225 ?taxon_name].
 }
 LIMIT 10000""";
 schema:target <https://query.wikidata.org/sparql> ;

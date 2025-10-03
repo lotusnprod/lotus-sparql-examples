@@ -31,7 +31,7 @@ SELECT ?taxon ?taxon_name ?compound ?compound_smiles ?bioactivity ?isolation_ref
     ?compound wdt:P235 ?compound_id;
     wdt:P233 ?compound_smiles;
     p:P703 ?statement;
-    (wdt:P2868/wdt:P486) ?meshId.
+    wdt:P2868 [wdt:P486 ?meshId].
     ?mesh wdt:P486 ?meshId;
     rdfs:label ?bioactivity.
     FILTER(LANGMATCHES(LANG(?bioactivity), "EN"))

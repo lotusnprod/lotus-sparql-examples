@@ -1,0 +1,48 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pr: <http://www.wikidata.org/prop/reference/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_nps_source_date_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "References dates."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: References dates.
+SELECT ?reference ?reference_date WHERE {
+  {
+    SELECT DISTINCT ?reference WHERE {
+      [
+        p:P235 [];
+        p:P703 [
+          prov:wasDerivedFrom [
+            pr:P248 ?reference ];
+        ]
+      ].
+    }
+    LIMIT 100000
+  }
+   SERVICE <https://query-scholarly.wikidata.org/sparql> {
+    ?reference wdt:P577 ?reference_date.
+  }
+}
+LIMIT 100000
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+spex:federatesWith <https://query-scholarly.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products";
+dc:creator "Lotus Contributors" .

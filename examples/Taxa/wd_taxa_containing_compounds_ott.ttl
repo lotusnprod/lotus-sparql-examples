@@ -1,0 +1,30 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Taxa/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_taxa_containing_compounds_ott a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "OTT IDs of taxa containing compound(s)."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+#title: OTT IDs of taxa containing compound(s).
+SELECT ?taxon ?taxon_id_ott WHERE {
+  ?structure p:P235 [];
+    p:P703 [
+      ps:P703 ?taxon].
+  ?taxon wdt:P9157 ?taxon_id_ott.
+}
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products", "structural similarity", "taxa" ;
+dc:creator "Lotus Contributors" .

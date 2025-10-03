@@ -39,7 +39,9 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
         sachem:cutoff ?CUTOFF
         ].
     }
-    ?compound wdt:P703/wdt:P171 ?parent_taxon.
+    ?compound wdt:P703 [
+        wdt:P171 ?parent_taxon
+    ].
     ?parent_taxon wdt:P225 ?parent_taxon_name.
 }
 GROUP BY ?parent_taxon ?parent_taxon_name

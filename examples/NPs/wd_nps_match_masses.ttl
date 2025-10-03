@@ -24,7 +24,7 @@ SELECT DISTINCT ?compound ?mf ?inchi (GROUP_CONCAT(?taxon_name; SEPARATOR = ", "
     }
     ?compound wdt:P2067 ?mass.
     FILTER((?mass > (?query - ((?ppm * "0.000001"^^xsd:decimal) * ?query))) && (?mass < (?query + ((?ppm * "0.000001"^^xsd:decimal) * ?query))))
-    ?compound (wdt:P703/wdt:P225) ?taxon_name;
+    ?compound wdt:P703 [wdt:P225 ?taxon_name];
     wdt:P234 ?inchi;
     wdt:P274 ?mf.
 }

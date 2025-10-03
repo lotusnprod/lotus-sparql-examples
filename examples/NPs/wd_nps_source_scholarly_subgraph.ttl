@@ -23,10 +23,12 @@ PREFIX ps: <http://www.wikidata.org/prop/statement/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Referenced compound-taxon pairs on Wikidata (limited to 1000 results).
 SELECT DISTINCT ?compound ?compound_inchikey ?taxon ?taxon_name ?reference ?reference_doi WHERE {
-    ?compound wdt:P235 ?compound_inchikey;       # get the inchikey
+    ?compound wdt:P235 ?compound_inchikey;         # get the inchikey
     p:P703[                                        # statement found in taxon
-    ps:P703 ?taxon;                                # get the taxon
-    (prov:wasDerivedFrom/pr:P248) ?reference ].    # get the reference
+          ps:P703 ?taxon;                          # get the taxon
+                  prov:wasDerivedFrom [
+                    pr:P248 ?reference ]           # get the reference
+        ].
     ?taxon wdt:P225 ?taxon_name.                   # get the taxon scientific name
     SERVICE <https://query-scholarly.wikidata.org/sparql> {
       ?reference wdt:P356 ?reference_doi.          # get the reference DOI

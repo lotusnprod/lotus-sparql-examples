@@ -28,10 +28,16 @@ SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (
     {
         SELECT DISTINCT ?dish ?dishLabel ?ingredient ?taxon WHERE {
             {
-                SELECT DISTINCT ?dish ?dishLabel ?ingredient WHERE {
+              SELECT DISTINCT ?dish ?dishLabel ?ingredient WHERE {
+                  # modelling is not perfect
+                  VALUES ?approx_dish {
+                      wd:Q746549
+                      wd:Q19861951
+                    }
                     hint:Query hint:optimizer "None".
-                    ?dish wdt:P31 wd:Q746549;
-                    (wdt:P527+) ?ingredient.
+                    ?dish wdt:P31 ?approx_dish;
+                    # modelling is not perfect
+                    (wdt:P527+|wdt:P186+) ?ingredient.
                     hint:Prior hint:gearing "forward".
                     SERVICE wikibase:label {
                         bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en".

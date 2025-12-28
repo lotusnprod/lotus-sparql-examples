@@ -1,0 +1,36 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pq: <http://www.wikidata.org/prop/qualifier/> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+ex:wd_nps_retracted_articles a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+rdfs:comment "List all compound-taxon pairs deprecated due to retracted papers."@en ;
+sh:prefixes _:sparql_examples_prefixes;
+sh:select """
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+#title: List all compound-taxon pairs deprecated due to retracted papers
+SELECT DISTINCT ?compound ?compound_inchikey ?taxon ?taxon_name
+WHERE {
+    ?compound wdt:P235 ?compound_inchikey;
+              p:P703 ?statement.
+    ?statement ps:P703 ?taxon;
+               pq:P2241 wd:Q77253277.
+    ?taxon wdt:P225 ?taxon_name.
+}
+""";
+schema:target <https://query.wikidata.org/sparql> ;
+dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+schema:keywords "natural products", "retracted articles";
+dc:creator "Lotus Contributors" .

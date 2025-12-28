@@ -5,12 +5,12 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-PREFIX p: <http://www.wikidata.org/prop/>
-PREFIX pr: <http://www.wikidata.org/prop/reference/>
-PREFIX prov: <http://www.w3.org/ns/prov#>
-PREFIX ps: <http://www.wikidata.org/prop/statement/>
-PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix pr: <http://www.wikidata.org/prop/reference/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 ex:wd_maintenance_nps_homonyms a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
 rdfs:comment "Maintenance. Referenced compound-taxon pairs on Wikidata (assigned to incorrect homonym)."@en ;

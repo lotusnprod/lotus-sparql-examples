@@ -11,6 +11,7 @@
 @prefix pr: <http://www.wikidata.org/prop/reference/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
@@ -23,11 +24,15 @@ PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX pr: <http://www.wikidata.org/prop/reference/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 #title: CASCADE query.
 SELECT DISTINCT ?structure ?structureLabel ?structure_id ?structureSmiles ?taxaLabels ?taxa ?referencesLabels ?references_ids ?references WHERE {
-  ?taxa (wdt:P171*) wd:Q158572;
+  VALUES ?taxon_id { wd:Q158572 }
+  VALUES ?date_start { 0 }
+  VALUES ?date_end { 9999 } 
+  ?taxa (wdt:P171*) ?taxon_id;
     wdt:P225 ?taxaLabels.
   ?structure wdt:P235 ?structure_id;
     wdt:P233 ?structureSmiles;
@@ -40,7 +45,7 @@ SELECT DISTINCT ?structure ?structureLabel ?structure_id ?structureSmiles ?taxaL
       wdt:P356 ?references_ids;
       wdt:P577 ?art_date.
   }
-  FILTER(((YEAR(?art_date)) >= 0 ) && ((YEAR(?art_date)) <= 9999 ))
+  FILTER(((YEAR(?art_date)) >= ?date_start ) && ((YEAR(?art_date)) <= ?date_end ))
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE], mul, en". }
 }
 LIMIT 1000000

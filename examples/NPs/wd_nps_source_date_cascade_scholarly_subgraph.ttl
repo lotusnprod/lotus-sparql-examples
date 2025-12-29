@@ -51,7 +51,7 @@ SELECT DISTINCT ?structure ?structureLabel ?structure_id ?structureSmiles ?taxaL
 LIMIT 1000000
 """;
 schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://query-scholarly.wikidata.org/sparql>, <http://wikiba.se/ontology#label>, <http://www.bigdata.com/rdf#sample> ;
+spex:federatesWith <https://query-scholarly.wikidata.org/sparql>, <http://wikiba.se/ontology#label> ;
 dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 schema:keywords "natural products";
 dc:creator "Lotus Contributors" .

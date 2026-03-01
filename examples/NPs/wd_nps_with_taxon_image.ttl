@@ -7,10 +7,10 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_nps_with_taxon_image a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "NPs with corresponding taxon image."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_with_taxon_image a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "NPs with corresponding taxon image."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Taxa containing compounds corresponding to chemical formula.
 SELECT DISTINCT ?compound WHERE {
@@ -19,8 +19,8 @@ SELECT DISTINCT ?compound WHERE {
   ?taxon wdt:P18 ?image .
 }
 # LIMIT 500000
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" ;
+    dc:creator "Lotus Contributors" .

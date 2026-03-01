@@ -1,21 +1,21 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
-@prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
-@prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:wd_nps_taxa_species_containing_all_compounds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Species containing at least n of the following compounds."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_taxa_species_containing_all_compounds a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Species containing at least n of the following compounds."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -57,9 +57,9 @@ SELECT DISTINCT ?taxon ?taxon_name WHERE {
   FILTER((xsd:integer(?compoundCount)) >= ?n)
 }
 LIMIT 10000
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products", "structural similarity", "taxa" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" , "structural similarity" , "taxa" ;
+    dc:creator "Lotus Contributors" .

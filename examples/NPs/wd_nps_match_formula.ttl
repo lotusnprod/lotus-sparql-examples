@@ -7,10 +7,10 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_nps_match_formula a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Taxa containing compounds corresponding to chemical formula."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_match_formula a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Taxa containing compounds corresponding to chemical formula."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Taxa containing compounds corresponding to chemical formula.
 SELECT DISTINCT ?compound ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {
@@ -24,8 +24,8 @@ SELECT DISTINCT ?compound ?smiles_canonical ?formula ?taxon ?taxon_name WHERE {
     wdt:P703 ?taxon.
     ?taxon wdt:P225 ?taxon_name.}
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" ;
+    dc:creator "Lotus Contributors" .

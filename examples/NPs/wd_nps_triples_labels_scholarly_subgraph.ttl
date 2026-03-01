@@ -8,10 +8,10 @@
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 
-ex:wd_nps_triples_labels_scholarly_subgraph a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "NPs triples labels."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_triples_labels_scholarly_subgraph a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "NPs triples labels."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
 SELECT ?compoundLabel ?taxonLabel ?referenceLabel WHERE {
@@ -24,9 +24,9 @@ SELECT ?compoundLabel ?taxonLabel ?referenceLabel WHERE {
         OPTIONAL { ?reference_qid rdfs:label ?referenceLabel . FILTER(LANG(?referenceLabel) = "en") }
       }
     }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://query-scholarly.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    spex:federatesWith <https://query-scholarly.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" ;
+    dc:creator "Lotus Contributors" .

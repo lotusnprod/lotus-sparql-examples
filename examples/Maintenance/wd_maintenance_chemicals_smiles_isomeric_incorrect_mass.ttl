@@ -8,10 +8,10 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_maintenance_chemicals_smiles_isomeric_incorrect_mass a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemicals with isomeric SMILES and eventual incorrect mass."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_maintenance_chemicals_smiles_isomeric_incorrect_mass a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Chemicals with isomeric SMILES and eventual incorrect mass."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Chemicals with isomeric SMILES and eventual incorrect mass
@@ -24,8 +24,8 @@ SELECT ?structure ?smiles ?mass WHERE {
     ?structure wdt:P31 ?classes.
     ?structure wdt:P2067 ?mass.
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "maintenance", "chemicals" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "maintenance" , "chemicals" ;
+    dc:creator "Lotus Contributors" .

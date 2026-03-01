@@ -8,10 +8,10 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_maintenance_chemicals_inchi_no_inchikey a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemicals with InChI but no InChIKey."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_maintenance_chemicals_inchi_no_inchikey a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Chemicals with InChI but no InChIKey."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Chemicals with InChI but no InChIKey
@@ -25,8 +25,8 @@ SELECT ?structure ?inchi WHERE {
     OPTIONAL { ?structure wdt:P235 ?inchikey. }
     FILTER(!(BOUND(?inchikey)))
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "maintenance", "chemicals" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "maintenance" , "chemicals" ;
+    dc:creator "Lotus Contributors" .

@@ -1,22 +1,22 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <https://schema.org/> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 @prefix idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/> .
 @prefix p: <http://www.wikidata.org/prop/> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:wd_nps_taxa_containing_chemicals_scaffolds a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Taxa containing indolic scaffolds. Count occurences by parent taxon."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_taxa_containing_chemicals_scaffolds a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Taxa containing indolic scaffolds. Count occurences by parent taxon."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX idsm: <https://idsm.elixir-czech.cz/sparql/endpoint/>
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX ps: <http://www.wikidata.org/prop/statement/>
@@ -40,9 +40,9 @@ SELECT ?parent_taxon ?parent_taxon_name (COUNT(DISTINCT ?compound) AS ?count) WH
 GROUP BY ?parent_taxon ?parent_taxon_name
 HAVING (?count > 100)
 ORDER BY DESC (?count)
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "chemical scaffolds";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    spex:federatesWith <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "chemical scaffolds" ;
+    dc:creator "Lotus Contributors" .

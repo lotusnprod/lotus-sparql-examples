@@ -8,10 +8,10 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_maintenance_chemicals_smiles_isomeric_no_canonical a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemicals with isomeric SMILES but no canonical SMILES."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_maintenance_chemicals_smiles_isomeric_no_canonical a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Chemicals with isomeric SMILES but no canonical SMILES."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Chemicals with isomeric SMILES but no canonical SMILES
@@ -25,8 +25,8 @@ SELECT ?structure ?smiles_isomeric WHERE {
     OPTIONAL { ?structure wdt:P233 ?smiles_canonical. }
     FILTER(!(BOUND(?smiles_canonical)))
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "maintenance", "chemicals" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "maintenance" , "chemicals" ;
+    dc:creator "Lotus Contributors" .

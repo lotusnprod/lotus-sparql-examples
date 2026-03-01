@@ -1,18 +1,18 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
+@prefix p: <http://www.wikidata.org/prop/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix p: <http://www.wikidata.org/prop/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
-ex:wd_nps_popularity_sitelinks a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Most popular natural products by number of sitelinks."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_popularity_sitelinks a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Most popular natural products by number of sitelinks."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -28,8 +28,8 @@ SELECT DISTINCT ?np ?sitelinks WHERE {
     FILTER((STRLEN(?formula)) > 2 )
 }
 ORDER BY DESC (?sitelinks)
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" ;
+    dc:creator "Lotus Contributors" .

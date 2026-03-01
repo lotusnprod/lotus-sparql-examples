@@ -8,10 +8,10 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_nps_families a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Compounds found in taxa and their families."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_families a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Compounds found in taxa and their families."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Compounds counts in taxa and their families.
@@ -26,8 +26,8 @@ SELECT DISTINCT ?compound ?compound_inchikey ?taxon ?taxon_name ?supertaxon ?sup
   ?supertaxon wdt:P105 ?rank;
     wdt:P225 ?supertaxon_name.
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" ;
+    dc:creator "Lotus Contributors" .

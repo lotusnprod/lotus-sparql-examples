@@ -1,17 +1,17 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Maintenance/> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix p: <http://www.wikidata.org/prop/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 
-ex:wd_maintenance_nps_2 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Non-referenced compound-taxon pairs on Wikidata (limited to 10)."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_maintenance_nps_2 a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Non-referenced compound-taxon pairs on Wikidata (limited to 10)."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 #title: Non-referenced compound-taxon pairs on Wikidata (limited to 10).
@@ -21,8 +21,8 @@ SELECT ?statement WHERE {
     MINUS { ?statement prov:wasDerivedFrom []. }
 }
 LIMIT 10
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "maintenance", "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "maintenance" , "natural products" ;
+    dc:creator "Lotus Contributors" .

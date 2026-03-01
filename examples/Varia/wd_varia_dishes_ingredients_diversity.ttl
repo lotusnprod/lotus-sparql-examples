@@ -1,22 +1,22 @@
+@prefix bd: <http://www.bigdata.com/rdf#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Varia/> .
+@prefix hint: <http://www.bigdata.com/queryHints#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#> .
-@prefix bd: <http://www.bigdata.com/rdf#> .
-@prefix hint: <http://www.bigdata.com/queryHints#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
 
-ex:wd_varia_dishes_ingredients_diversity a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Dishes with ingredients found in the most diverse taxa."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_varia_dishes_ingredients_diversity a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Dishes with ingredients found in the most diverse taxa."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX hint: <http://www.bigdata.com/queryHints#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -58,9 +58,9 @@ SELECT DISTINCT ?dish ?dishLabel (COUNT(DISTINCT ?ingredient) AS ?ingredients) (
 }
 GROUP BY ?dish ?dishLabel
 ORDER BY DESC (?parents)
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <http://wikiba.se/ontology#label> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "food";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    spex:federatesWith <http://wikiba.se/ontology#label> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "food" ;
+    dc:creator "Lotus Contributors" .

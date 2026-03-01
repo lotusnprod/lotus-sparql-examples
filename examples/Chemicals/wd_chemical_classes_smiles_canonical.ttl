@@ -1,18 +1,18 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Chemicals/> .
+@prefix p: <http://www.wikidata.org/prop/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix p: <http://www.wikidata.org/prop/> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_chemical_classes_smiles_canonical a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemical classes defined by canonical SMILES."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_chemical_classes_smiles_canonical a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Chemical classes defined by canonical SMILES."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -35,8 +35,8 @@ SELECT * WHERE {
     OPTIONAL { ?class p:P2017 ?isomeric. }
     FILTER(!(BOUND(?isomeric)))
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "chemical classes" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "chemical classes" ;
+    dc:creator "Lotus Contributors" .

@@ -1,3 +1,4 @@
+@prefix bd: <http://www.bigdata.com/rdf#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/NPs/> .
@@ -5,14 +6,13 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix bd: <http://www.bigdata.com/rdf#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_nps_missing_sister_taxa a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Taxa with compounds found in taxon from same parent taxon, but not the taxon itself."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_nps_missing_sister_taxa a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Taxa with compounds found in taxon from same parent taxon, but not the taxon itself."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -45,8 +45,8 @@ FILTER NOT EXISTS {?compound wdt:P703 ?taxon_without_compound.}
 FILTER(LANG(?compoundLabel) = "en").
 }
 LIMIT 10000
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "natural products";
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "natural products" ;
+    dc:creator "Lotus Contributors" .

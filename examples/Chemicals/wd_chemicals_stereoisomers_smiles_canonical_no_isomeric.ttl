@@ -8,10 +8,10 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_chemicals_stereoisomers_smiles_canonical_no_isomeric a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Stereoisomers with canonical SMILES."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_chemicals_stereoisomers_smiles_canonical_no_isomeric a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Stereoisomers with canonical SMILES."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Stereoisomers with canonical SMILES
@@ -21,8 +21,8 @@ SELECT ?structure ?smiles WHERE {
     OPTIONAL { ?structure wdt:P2017 ?isomeric. }
     FILTER(!(BOUND(?isomeric)))
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "chemicals" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "chemicals" ;
+    dc:creator "Lotus Contributors" .

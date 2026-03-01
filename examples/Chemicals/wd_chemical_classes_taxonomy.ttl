@@ -1,3 +1,4 @@
+@prefix bd: <http://www.bigdata.com/rdf#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <https://lotus.nprod.net/lotus-sparql-examples/Chemicals/> .
@@ -9,12 +10,11 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix wikibase: <http://wikiba.se/ontology#> .
-@prefix bd: <http://www.bigdata.com/rdf#> .
 
-ex:wd_chemical_classes_taxonomy a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemical classes taxonomy."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_chemical_classes_taxonomy a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Chemical classes taxonomy."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -37,9 +37,9 @@ SELECT * WHERE {
     OPTIONAL { ?class wdt:P279 ?parent. }
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-spex:federatesWith <http://wikiba.se/ontology#label> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "chemical classes" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    spex:federatesWith <http://wikiba.se/ontology#label> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "chemical classes" ;
+    dc:creator "Lotus Contributors" .

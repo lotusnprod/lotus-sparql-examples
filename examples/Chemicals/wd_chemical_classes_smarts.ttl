@@ -8,10 +8,10 @@
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-ex:wd_chemical_classes_smarts a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
-rdfs:comment "Chemical classes defined by SMARTS."@en ;
-sh:prefixes _:sparql_examples_prefixes;
-sh:select """
+ex:wd_chemical_classes_smarts a sh:SPARQLExecutable , sh:SPARQLSelectExecutable ;
+    rdfs:comment "Chemical classes defined by SMARTS."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 #title: Chemical classes defined by SMARTS
@@ -31,8 +31,8 @@ SELECT * WHERE {
     ?class wdt:P31 ?instance.
     ?class wdt:P8533 ?structure.
 }
-""";
-schema:target <https://query.wikidata.org/sparql> ;
-dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-schema:keywords "chemical classes" ;
-dc:creator "Lotus Contributors" .
+""" ;
+    schema:target <https://query.wikidata.org/sparql> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    schema:keywords "chemical classes" ;
+    dc:creator "Lotus Contributors" .

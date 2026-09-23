@@ -9,7 +9,13 @@ Each SPARQL query is itself in a turtle file. We use the following ontologies fo
 * RDF for basic type relations
 * schema.org for the target SPARQL endpoint and tagging relevant keywords
 
-The following illustrates an example to retrieve retrieve human enzymes that metabolize sphingolipids from the UniProt SPARQL endpoint, with a service call to Rhea endpoint.
+## Having examples for your own endpoints
+
+Use the [sparql-examples template](https://github.com/sib-swiss/sparql-examples-template) to create a new repository for examples of your own endpoints. Fork this repository and open a pull request if you want to contribute to the SIB SPARQL examples.
+
+## What it looks like
+
+The following illustrates an example to retrieve human enzymes that metabolize sphingolipids from the UniProt SPARQL endpoint, with a service call to Rhea endpoint.
 
 ```turtle
 @prefix ex: <https://sparql.uniprot.org/.well-known/sparql-examples/> . # <!-- change per dataset
@@ -19,7 +25,7 @@ The following illustrates an example to retrieve retrieve human enzymes that met
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
 ex:040 # <!-- UniProt, Rhea and Swiss-Lipids are numbered but this can be anything.
-	a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
+    a sh:SPARQLExecutable, sh:SPARQLSelectExecutable ;
     rdfs:comment "Retrieve human enzymes that metabolize sphingolipids and are annotated in ChEMBL"@en ;
     sh:prefixes _:sparql_examples_prefixes ; # <!-- required for the import of the prefix declarations. Note the blank node
     sh:select """PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>
@@ -58,7 +64,7 @@ wget -O sparql-examples-utils.jar 'https://github.com/sib-swiss/sparql-examples-
 Compile all query files for a specific example folder, into a local file including the prefixes/namespaces definitions:
 
 ```bash
-java -jar sparql-examples-utils.jar convert -i examples/ -p UniProt -f ttl > examples_UniProt.ttl
+java -jar sparql-examples-utils.jar convert -i examples/ -p Wikidata -f ttl > examples_Wikidata.ttl
 ```
 
 > You can then load this file to this project SPARQL endpoint! We recommend to upload it to a named graph: your endpoint URL + `/.well-known/sparql-examples`
@@ -97,7 +103,7 @@ should return no test failures. RDF4j and Jena are both a lot stricter than virt
 The queries can be executed automatically on all endpoints they apply to using an extra argument `--also-run-slow-tests`:
 
 ```bash
-java -jar sparql-examples-utils.jar test --input-directory=./examples/MetaNetX --also-run-slow-tests
+java -jar sparql-examples-utils.jar test --input-directory=./examples/Wikidata --also-run-slow-tests
 ```
 
 > This does change the queries to add a LIMIT 1 if no limit was set in the query. Then check if there is a result it is fetched.
@@ -139,6 +145,18 @@ If you reuse any part of this work, please cite [the GigaScience paper](https://
     month = {10},
     title = {A large collection of bioinformatics question-query pairs over federated knowledge graphs: methodology and applications},
     url = {https://github.com/sib-swiss/sparql-examples-utils},
-    year = {2024}
+    year = {2025}
 }
 ```
+
+## How to test github page rendering
+
+```sh
+docker build -t sparql-examples .
+docker run --rm  -v "$PWD":/srv/jekyll sparql-examples bundler exec jekyll build --watch &
+python3 -m http.server 8792 --directory _site
+```
+Build a local docker image that has the right Jekyll version and use that to build the webpages.
+Then serve that with the python3 inbuild basic http server.
+Open a browser locally at `http://localhost:8792/` to see the rendered HTML
+

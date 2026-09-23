@@ -18,42 +18,43 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-  
+
 jobs:
   publish_html:
     name: "publish html"
-    runs-on: ubuntu-latest 
-    steps: 
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      with:
-        persist-credentials: false
-    
-    - uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-    
-    - name: Install tester
-      run: wget "https://github.com/sib-swiss/sparql-examples-utils/releases/download/v2.0.24/sparql-examples-utils-2.0.24-uber.jar" -O sparql-examples-utils-uber.jar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3d3c42e5aac5ba805825da76410c181273ba90b1
 
-    - name: generate markdown
-      run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -m 
-    
-    - name: generate rq files
-      run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -r
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'graalvm'
+          java-version: '25'
 
-    - name: Setup Pages
-      id: pages
-      uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - name: Install tester
+        run: wget "https://github.com/sib-swiss/sparql-examples-utils/releases/download/v2.0.24/sparql-examples-utils-2.0.24-uber.jar" -O sparql-examples-utils-uber.jar
 
-    - name: Build with Jekyll
-      uses: actions/jekyll-build-pages@v1
-      with:
-        source: ./
-        destination: ./_site
-       
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      - name: generate markdown
+        run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -m
+
+      - name: generate rq files
+        run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -r
+
+      - name: concatenate all examples into one ttl file
+        run: java -jar sparql-examples-utils-uber.jar convert -i examples/ -p all -f ttl > all.ttl
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
 
   # Deployment job
   deploy:
